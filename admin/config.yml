@@ -17,10 +17,10 @@
 
 backend:
   name:      github
-  repo:      YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # ← REPLACE
+  repo:      mngkvn/phsremodeling.com   # ← REPLACE
   branch:    main
   auth_type: pkce
-  app_id:    YOUR-GITHUB-APP-ID                    # ← REPLACE (numeric)
+  app_id:    3213108                    # ← REPLACE (numeric)
 
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
