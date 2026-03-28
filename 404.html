@@ -1,0 +1,58 @@
+---
+layout: null
+permalink: /404.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | PHS Remodeling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    body { display:flex; align-items:center; justify-content:center; min-height:100svh; }
+    .not-found {
+      text-align: center;
+      padding: 48px 24px;
+      max-width: 520px;
+    }
+    .not-found-num {
+      font-family: var(--ff-display);
+      font-size: clamp(6rem, 16vw, 10rem);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--clr-surface-2);
+      margin-bottom: 0;
+    }
+    .not-found-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 16px;
+    }
+    .not-found-text {
+      font-size: 0.95rem;
+      color: var(--clr-muted);
+      line-height: 1.72;
+      margin-bottom: 36px;
+    }
+    .not-found-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--clr-accent);
+      margin: 20px auto 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="not-found">
+    <p class="not-found-num">404</p>
+    <div class="not-found-rule"></div>
+    <h1 class="not-found-title">Page Not Found</h1>
+    <p class="not-found-text">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    <a href="/" class="btn btn-primary">Back to Home</a>
+  </div>
+</body>
+</html>

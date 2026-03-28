@@ -1,0 +1,31 @@
+# ================================================================
+# _data/whyus.yml
+# Edit the title and description for each card.
+# The 'icon' field maps to an SVG id in index.html — keep as-is
+# or add your own SVG icons.
+# ================================================================
+
+items:
+  - title:       "Customers First"
+    description: "As a company dedicated to providing premier customer service, it is important for us to deliver unparalleled workmanship on every assignment."
+    icon:        "icon-users"
+
+  - title:       "On-Time Completion"
+    description: "We will work with you to meet deadlines and coordinate with other related projects. We do this to guarantee that the project is completed according to your preferences."
+    icon:        "icon-clock"
+
+  - title:       "Licensed Contractors"
+    description: "We are accredited, licensed, bonded, and insured. With our experience and expertise, we can provide the support your project needs."
+    icon:        "icon-shield"
+
+  - title:       "Great Service"
+    description: "We combine our industry knowledge and our dedication to delivering exceptional service to our clients."
+    icon:        "icon-thumbs-up"
+
+  - title:       "Open Communication"
+    description: "We will stay in touch, keeping you up to date on both the paperwork and renovation process."
+    icon:        "icon-message"
+
+  - title:       "Satisfaction Guaranteed"
+    description: "We put everything in detail and follow a step-by-step process so rest assured that the customers will get what they want."
+    icon:        "icon-check"

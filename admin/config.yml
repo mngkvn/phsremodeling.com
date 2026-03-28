@@ -1,0 +1,241 @@
+# ================================================================
+# Decap CMS — config.yml
+# ================================================================
+# SETUP (GitHub Pages + PKCE — no proxy needed):
+#
+# 1. Create a GitHub App at https://github.com/settings/apps/new
+#    Homepage URL:  https://phsremodeling.com
+#    Callback URL:  https://phsremodeling.com/admin/
+#    Permissions → Repository contents: Read & write
+#
+# 2. Copy the numeric App ID and paste below (app_id).
+#
+# 3. Replace YOUR-GITHUB-USERNAME/YOUR-REPO-NAME below.
+#
+# 4. Push to GitHub → /admin/ will be live.
+# ================================================================
+
+backend:
+  name:      github
+  repo:      YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # ← REPLACE
+  branch:    main
+  auth_type: pkce
+  app_id:    YOUR-GITHUB-APP-ID                    # ← REPLACE (numeric)
+
+media_folder:  "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+# ================================================================
+# COLLECTIONS
+# ================================================================
+collections:
+
+  # ── Featured Projects ─────────────────────────────────────────
+  #
+  # DISPLAY ORDER WITHIN A CATEGORY:
+  #   • Set "Category Order" to 1 on the project you want shown first.
+  #   • Set 2 on the second project, 3 on the third, etc.
+  #   • Jekyll sorts by category_order when building the carousel.
+  #
+  # CATEGORIES:
+  #   Projects with the same "Category" are grouped into one
+  #   carousel block on the page. Add new categories freely —
+  #   they auto-create a new carousel section.
+  # ─────────────────────────────────────────────────────────────
+  - name:  "projects"
+    label: "Featured Projects"
+    label_singular: "Project"
+    folder: "_projects"
+    create: true
+    slug:   "{{category_order}}-{{slug}}"
+    summary: "{{category}} — {{title}} (Order: {{category_order}})"
+    sortable_fields: ["category", "category_order", "title"]
+
+    view_groups:
+      - label: By Category
+        field: category
+      - label: By Order
+        field: category_order
+
+    fields:
+      # ── Basic info
+      - label:  "Project Title"
+        name:   "title"
+        widget: "string"
+        hint:   "e.g. Kitchen Renovation — Westmont"
+
+      - label:  "Short Description"
+        name:   "description"
+        widget: "text"
+        hint:   "2–3 sentences shown under the title on the page"
+
+      # ── Categorisation
+      - label:   "Category"
+        name:    "category"
+        widget:  "select"
+        hint:    "Projects in the same category share one carousel block"
+        options:
+          - Kitchen
+          - Bathroom
+          - Basement
+          - Exterior
+          - Roofing
+          - Siding
+          - Windows & Doors
+          - Painting
+          - Drywall
+          - Electrical
+          - Plumbing
+          - Handyman
+          - Other
+
+      - label:      "Category Order"
+        name:       "category_order"
+        widget:     "number"
+        default:    1
+        value_type: int
+        min:        1
+        hint: >
+          Controls which project is shown first within this category.
+          1 = shown first, 2 = shown second, etc.
+          Use unique numbers within each category.
+
+      # ── Featured flag
+      - label:   "Show in Featured Projects"
+        name:    "featured"
+        widget:  "boolean"
+        default: true
+        hint:    "Toggle off to hide this project from the website without deleting it"
+
+      # ── Photos (up to 8, first becomes featured/wide)
+      - label:     "Project Photos"
+        name:      "images"
+        widget:    "list"
+        label_singular: "Photo"
+        max:       8
+        hint: >
+          Upload photos for this project. The FIRST photo will be displayed
+          larger (featured/landscape). Subsequent photos fill the smaller grid slots.
+          Recommended: 1200×900 px JPG or WebP.
+        field:
+          label:  "Photo"
+          name:   "image"
+          widget: "image"
+
+
+  # ── Site Settings ─────────────────────────────────────────────
+  - name:  "settings"
+    label: "Site Settings"
+    files:
+
+      # Hero Section
+      - label: "Hero Section"
+        name:  "hero"
+        file:  "_data/hero.yml"
+        fields:
+          - label:  "Hero Background Photo"
+            name:   "image"
+            widget: "image"
+            required: false
+            hint: >
+              Upload a landscape photo (1920×1080 px or wider).
+              A dark overlay is applied automatically so white text stays readable.
+              Recommended: a finished renovation photo — kitchen, bathroom, or exterior.
+          - label:  "Photo Alt Text"
+            name:   "alt"
+            widget: "string"
+            default: "PHS Remodeling — Home Renovations"
+            required: false
+          - label:  "Main Headline (line 1)"
+            name:   "headline_1"
+            widget: "string"
+            default: "Built To Last."
+          - label:  "Main Headline (line 2)"
+            name:   "headline_2"
+            widget: "string"
+            default: "Crafted With Pride."
+
+      # Contact Info
+      - label: "Contact Info & Service Area"
+        name:  "contact"
+        file:  "_config.yml"
+        fields:
+          - { label: "Phone",        name: "contact.phone",        widget: "string", hint: "e.g. (708) 555-1234" }
+          - { label: "Email",        name: "contact.email",        widget: "string" }
+          - { label: "Service Area", name: "contact.service_area", widget: "string", hint: "e.g. Serving the Greater Chicago Area" }
+
+      # Hours of Service
+      - label: "Hours of Service"
+        name:  "hours"
+        file:  "_config.yml"
+        fields:
+          - label: "Hours"
+            name:  "hours"
+            widget: "list"
+            fields:
+              - { label: "Day(s)",  name: "day",  widget: "string"  }
+              - { label: "Time",    name: "time", widget: "string"  }
+              - { label: "Open?",   name: "open", widget: "boolean", default: true }
+
+      # Services (hero tags)
+      - label: "Services List (Hero Tags)"
+        name:  "services"
+        file:  "_data/services.yml"
+        fields:
+          - label: "Services"
+            name:  "list"
+            widget: "list"
+            label_singular: "Service"
+            hint:  "Each item appears as a tag in the hero section"
+            field:
+              label:  "Service Name"
+              name:   "item"
+              widget: "string"
+
+      # Stats bar
+      - label: "Stats Bar"
+        name:  "stats"
+        file:  "_config.yml"
+        fields:
+          - label: "Stats"
+            name:  "stats"
+            widget: "list"
+            max:   4
+            fields:
+              - { label: "Value", name: "number", widget: "string", hint: "e.g. 15+ or 98%" }
+              - { label: "Label", name: "label",  widget: "string", hint: "e.g. Years of Experience" }
+
+      # Why Choose Us cards
+      - label: "Why Choose Us Cards"
+        name:  "whyus"
+        file:  "_data/whyus.yml"
+        fields:
+          - label: "Cards"
+            name:  "items"
+            widget: "list"
+            label_singular: "Card"
+            max:   6
+            fields:
+              - { label: "Title",       name: "title",       widget: "string" }
+              - { label: "Description", name: "description", widget: "text"   }
+
+      # Testimonials
+      - label: "Client Reviews / Testimonials"
+        name:  "testimonials"
+        file:  "_data/testimonials.yml"
+        fields:
+          - label: "Reviews"
+            name:  "items"
+            widget: "list"
+            label_singular: "Review"
+            fields:
+              - { label: "Client Name",  name: "name",     widget: "string" }
+              - { label: "Location",     name: "location", widget: "string", hint: "e.g. Oak Park, IL" }
+              - { label: "Review Text",  name: "text",     widget: "text" }
+              - { label: "Project Type", name: "project",  widget: "string", hint: "e.g. Kitchen" }
+              - label:   "Star Rating"
+                name:    "rating"
+                widget:  "number"
+                default: 5
+                min:     1
+                max:     5

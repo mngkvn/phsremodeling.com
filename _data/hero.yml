@@ -1,0 +1,13 @@
+# ================================================================
+# _data/hero.yml
+# Managed via CMS: /admin/ → Site Settings → Hero Background Photo
+# ================================================================
+
+# Path to your hero background image
+# Upload via CMS or place file at: assets/images/hero.jpg
+image: ""
+
+# Hero headline — shown in 3 lines on the homepage
+headline_1: "Built To Last."
+headline_2: "Crafted With"
+headline_3: "Pride."
