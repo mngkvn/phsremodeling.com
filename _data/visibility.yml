@@ -3,5 +3,5 @@ why_choose_us: true
 featured_projects: true
 cta_banner: false
 testimonials: false
-updates_feed: true
+updates_feed: false
 contact: true
