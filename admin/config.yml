@@ -16,11 +16,8 @@
 # ================================================================
 
 backend:
-  name: github
-  repo: mngkvn/phsremodeling.com
+  name: git-gateway
   branch: main
-  auth_type: pkce
-  app_id: 3213474
 
 
 media_folder:  "assets/images/uploads"
