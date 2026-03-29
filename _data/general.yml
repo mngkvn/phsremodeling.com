@@ -10,14 +10,7 @@ cta_heading: Ready to Transform Your Home?
 cta_subtext: From a single room to a full exterior overhaul — we handle every
   project with the same attention to detail and commitment to excellence.
 cta_phone_label: Call Us Now
+formspree_endpoint: https://formspree.io/f/xbdpgknz
 facebook_url: ""
-
-# ── Contact Form ──
-# Get your endpoint from https://formspree.io → New Form → copy the URL
-# Format: https://formspree.io/f/XXXXXXXX
-# Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: ""
-
-# ── Updates section ──
-updates_heading: "Latest Updates"
-updates_subtext: "Follow along as we share our latest projects, tips, and news."
+updates_heading: Latest Updates
+updates_subtext: Follow along as we share our latest projects, tips, and news.
