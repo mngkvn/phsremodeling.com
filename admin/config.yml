@@ -20,7 +20,7 @@ backend:
   repo: mngkvn/phsremodeling.com
   branch: main
   auth_type: pkce
-  client_id: Ov23li7sQ4EdftZjS85Q
+  app_id: 3213474
 
 
 media_folder:  "assets/images/uploads"
