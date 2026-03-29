@@ -1,0 +1,14 @@
+# ================================================================
+# _data/stats.yml
+# Managed via Decap CMS → Site Settings → Stats Bar
+# ================================================================
+
+items:
+  - number: "15+"
+    label:  "Years of Experience"
+  - number: "500+"
+    label:  "Projects Completed"
+  - number: "98%"
+    label:  "Client Satisfaction"
+  - number: "100+"
+    label:  "5-Star Reviews"

@@ -1,62 +1,34 @@
 # ================================================================
-# PHS Remodeling — Jekyll Configuration
+# PHS Remodeling — Jekyll Build Configuration
 # ================================================================
-# After cloning, update these settings before going live.
+# This file contains ONLY Jekyll build settings.
+# All editable site content lives in _data/*.yml files and is
+# managed through the Decap CMS at /admin/.
 # ================================================================
 
-title:       "PHS Remodeling"
-description: "Interior and exterior home renovations — kitchens, bathrooms, roofing, siding, and more."
-url:         "https://phsremodeling.com"   # Your live domain (no trailing slash)
-baseurl:     ""                             # Leave empty for custom domain; set to "/repo-name" for GitHub Pages subdomain
+title:   "PHS Remodeling"
+url:     "https://phsremodeling.com"   # live domain, no trailing slash
+baseurl: ""                             # "" for custom domain; "/repo" for GH Pages subdomain
 
-# Contact (used throughout the site via {{ site.contact.phone }} etc.)
-contact:
-  phone:        "(XXX) XXX-XXXX"           # ← Replace with real phone number
-  email:        "info@phsremodeling.com"   # ← Replace with real email
-  service_area: "Serving the Greater Chicago Area"
-
-# Business hours
-hours:
-  - day:   "Mon – Sat"
-    time:  "9:00 AM – 5:00 PM"
-    open:  true
-  - day:   "Sunday"
-    time:  "Closed"
-    open:  false
-
-# Stats bar (shown below hero)
-stats:
-  - number: "15+"
-    label:  "Years of Experience"
-  - number: "500+"
-    label:  "Projects Completed"
-  - number: "98%"
-    label:  "Client Satisfaction"
-  - number: "100+"
-    label:  "5-Star Reviews"
-
-# Jekyll Collections
+# Collections
 collections:
   projects:
-    output: false          # We render all projects on the homepage
-    sort_by: order
+    output:  false
+    sort_by: category_order
 
-# Defaults
 defaults:
   - scope:
       path: ""
-      type: "projects"
+      type: projects
     values:
       layout: null
 
-# Plugins
 plugins:
   - jekyll-seo-tag
 
-# Build settings
-markdown: kramdown
+markdown:    kramdown
 highlighter: rouge
-permalink: pretty
+permalink:   pretty
 exclude:
   - Gemfile
   - Gemfile.lock

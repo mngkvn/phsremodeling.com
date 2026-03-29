@@ -1,13 +1,19 @@
 # ================================================================
 # _data/hero.yml
-# Managed via CMS: /admin/ → Site Settings → Hero Background Photo
+# Managed via Decap CMS → Site Settings → Hero Section
 # ================================================================
 
-# Path to your hero background image
-# Upload via CMS or place file at: assets/images/hero.jpg
+# ── Background photo ──
 image: ""
+alt:   "PHS Remodeling — Home Renovations"
 
-# Hero headline — shown in 3 lines on the homepage
+# ── Text content ──
+eyebrow:    "PHS Remodeling"
 headline_1: "Built To Last."
-headline_2: "Crafted With"
-headline_3: "Pride."
+headline_2: "Crafted With Pride."
+sub:        "Interior & Exterior Renovations"
+
+# ── Button labels ──
+btn_primary: "Contact Us"
+btn_ghost:   "View Our Work"
+trust_badge: "Licensed & Insured"
