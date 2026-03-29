@@ -19,7 +19,7 @@ backend:
   name: github
   repo: mngkvn/phsremodeling.com
   branch: main
-  login: true
+
 
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
