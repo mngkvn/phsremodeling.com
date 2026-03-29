@@ -1,0 +1,18 @@
+# ================================================================
+# _data/visibility.yml
+# Managed via Decap CMS → Site Settings → Section Visibility
+#
+# Set any value to false to completely hide that section from the
+# website. No CSS or code changes needed — just toggle in the CMS
+# and the section disappears from the built page.
+#
+# Hero and Footer are always visible and cannot be hidden.
+# ================================================================
+
+stats_bar:        true   # Dark bar with numbers below the hero
+why_choose_us:    true   # "Built On Trust" cards grid
+featured_projects: true  # Category carousels with photos
+cta_banner:       true   # "Ready to Transform Your Home?" strip
+testimonials:     true   # Client reviews grid
+updates_feed:     true   # Facebook / social media embed
+contact:          true   # Contact form + phone/email + hours

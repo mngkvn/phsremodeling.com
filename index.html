@@ -181,7 +181,9 @@ layout: null
 
 <!-- ============================================================
      STATS BAR — edit via CMS → Site Settings → Stats Bar
+     Toggle visibility: CMS → Site Settings → Section Visibility
      ============================================================ -->
+{% if site.data.visibility.stats_bar != false %}
 <div class="stats-bar" aria-label="Company achievements">
   <div class="stats-inner">
     {% for s in site.data.stats.items %}
@@ -194,11 +196,14 @@ layout: null
     {% endfor %}
   </div>
 </div>
+{% endif %}
 
 
 <!-- ============================================================
      WHY CHOOSE US — edit via CMS → Site Settings → Why Choose Us Cards
+     Toggle visibility: CMS → Site Settings → Section Visibility
      ============================================================ -->
+{% if site.data.visibility.why_choose_us != false %}
 <section class="why-section" id="about">
   <div class="container">
 
@@ -227,10 +232,12 @@ layout: null
 
   </div>
 </section>
+{% endif %}
 
 
 <!-- ============================================================
      FEATURED PROJECTS — Category Carousels
+     Toggle visibility: CMS → Site Settings → Section Visibility
      ============================================================
 
      ┌─ HOW THE CAROUSEL WORKS ──────────────────────────────────┐
@@ -341,6 +348,7 @@ layout: null
        </div>
      {% endfor %}
      ============================================================ -->
+{% if site.data.visibility.featured_projects != false %}
 <section class="projects-section" id="projects">
   <div class="container">
 
@@ -621,11 +629,14 @@ layout: null
 
   </div><!-- /.container -->
 </section>
+{% endif %}
 
 
 <!-- ============================================================
      CTA BANNER — edit via CMS → Site Settings → General / Business Info
+     Toggle visibility: CMS → Site Settings → Section Visibility
      ============================================================ -->
+{% if site.data.visibility.cta_banner != false %}
 <div class="cta-banner">
   <div class="cta-inner">
     <div class="cta-text-block">
@@ -645,11 +656,14 @@ layout: null
     </div>
   </div>
 </div>
+{% endif %}
 
 
 <!-- ============================================================
      TESTIMONIALS — edit via CMS → Site Settings → Client Reviews
+     Toggle visibility: CMS → Site Settings → Section Visibility
      ============================================================ -->
+{% if site.data.visibility.testimonials != false %}
 <section class="testimonials-section" id="reviews">
   <div class="container">
 
@@ -697,12 +711,15 @@ layout: null
 
   </div>
 </section>
+{% endif %}
 
 
 <!-- ============================================================
      FACEBOOK / UPDATES — edit heading via CMS → Site Settings → General
+     Toggle visibility: CMS → Site Settings → Section Visibility
      Paste Elfsight embed code inside .feed-embed below
      ============================================================ -->
+{% if site.data.visibility.updates_feed != false %}
 <section class="feed-section" id="updates">
   <div class="container">
     <header class="feed-header reveal">
@@ -721,12 +738,15 @@ layout: null
     </div>
   </div>
 </section>
+{% endif %}
 
 
 <!-- ============================================================
      CONTACT — edit via CMS → Site Settings → Contact Info & Hours
+     Toggle visibility: CMS → Site Settings → Section Visibility
      Form action: change action="#" to your Formspree/Netlify endpoint
      ============================================================ -->
+{% if site.data.visibility.contact != false %}
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -842,6 +862,7 @@ layout: null
     </div>
   </div>
 </section>
+{% endif %}
 
 
 <!-- ============================================================
