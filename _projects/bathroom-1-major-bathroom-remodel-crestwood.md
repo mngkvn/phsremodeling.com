@@ -1,6 +1,6 @@
 ---
 title: Major Bathroom Remodel - Crestwood
-description: " "
+description: Total Bathroom Remodel - Including Sink, Shower and Bath Tub
 category: Bathroom
 category_order: 1
 featured: true
