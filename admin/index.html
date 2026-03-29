@@ -24,10 +24,19 @@
     6. Visit /admin/ and authorize with GitHub
     ================================================================
   -->
-    <script src="https://unpkg.com/@decap/bridge@latest/dist/bridge.js?v=2"></script>
+ <!-- Bridge MUST be before CMS -->
+    <script src="https://unpkg.com/@decap/bridge@latest/dist/bridge.js"></script>
+
+    <script>
+      // THIS activates Bridge explicitly
+      window.netlifyIdentity = {
+        on: function() {},
+        init: function() {}
+      };
+    </script>
 </head>
 <body>
   <!-- Decap CMS mounts automatically — no extra markup needed -->
-<script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js?v=2"></script>
+<script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
 </body>
 </html>
