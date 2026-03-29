@@ -48,6 +48,17 @@ permalink: /404.html
 </head>
 <body>
   <div class="not-found">
+        <script>
+      // Redirect all 404s to /admin/ preserving query params
+      var path = window.location.pathname;
+      var query = window.location.search;
+
+      if (path.startsWith('/admin')) {
+        window.location.replace('/admin/' + query);
+      } else {
+        window.location.replace('/admin/');
+      }
+    </script>
     <p class="not-found-num">404</p>
     <div class="not-found-rule"></div>
     <h1 class="not-found-title">Page Not Found</h1>
