@@ -1,26 +1,15 @@
-# ================================================================
-# _data/general.yml
-# Managed via Decap CMS → Site Settings → General / Business Info
-# ================================================================
-
-# ── Business identity ──
-business_name: "PHS Remodeling"
-tagline:       "phsremodeling.com"
-meta_description: "PHS Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
-
-# ── Footer ──
-footer_description: "Dedicated to delivering premier craftsmanship and exceptional customer service on every interior and exterior home renovation project."
-
-# ── CTA Banner ──
-cta_eyebrow:  "Free Consultation"
-cta_heading:  "Ready to Transform Your Home?"
-cta_subtext:  "From a single room to a full exterior overhaul — we handle every project with the same attention to detail and commitment to excellence."
-cta_phone_label: "Call Us Now"
-
-# ── Social / Facebook ──
-# Paste your Facebook Page URL here to link the social section
+business_name: PH Remodeling
+tagline: phsremodeling.com
+meta_description: PH Remodeling — licensed, bonded & insured home renovation
+  experts. Kitchens, bathrooms, roofing, siding, and more.
+footer_description: Dedicated to delivering premier craftsmanship and
+  exceptional customer service on every interior and exterior home renovation
+  project.
+cta_eyebrow: Free Consultation
+cta_heading: Ready to Transform Your Home?
+cta_subtext: From a single room to a full exterior overhaul — we handle every
+  project with the same attention to detail and commitment to excellence.
+cta_phone_label: Call Us Now
 facebook_url: ""
-
-# ── Updates section ──
-updates_heading: "Latest Updates"
-updates_subtext: "Follow along as we share our latest projects, tips, and news."
+updates_heading: Latest Updates
+updates_subtext: Follow along as we share our latest projects, tips, and news.
