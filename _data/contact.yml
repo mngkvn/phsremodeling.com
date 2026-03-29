@@ -1,19 +1,10 @@
-# ================================================================
-# _data/contact.yml
-# Managed via Decap CMS → Site Settings → Contact & Hours
-# ONE file for everything contact-related — no duplicates.
-# ================================================================
-
-# ── Contact details ──
-phone:        "(XXX) XXX-XXXX"
-email:        "info@phsremodeling.com"
-service_area: "Serving the Greater Chicago Area"
-
-# ── Hours of service ──
+phone: "6304156766"
+email: contractor@phsremodeling.com
+service_area: Serving the Midwest
 hours:
-  - day:  "Mon – Sat"
-    time: "9:00 AM – 5:00 PM"
+  - day: Mon – Sat
+    time: 9:00 AM – 5:00 PM
     open: true
-  - day:  "Sunday"
-    time: "Closed"
+  - day: Sunday
+    time: Closed
     open: false
