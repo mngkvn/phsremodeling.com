@@ -348,6 +348,11 @@ layout: null
        </div>
      {% endfor %}
      ============================================================ -->
+<!-- ============================================================
+     FEATURED PROJECTS — Category Carousels
+     Toggle visibility: CMS → Site Settings → Section Visibility
+     Add/edit/delete projects: CMS → Featured Projects
+     ============================================================ -->
 {% if site.data.visibility.featured_projects != false %}
 <section class="projects-section" id="projects">
   <div class="container">
@@ -368,264 +373,125 @@ layout: null
       </a>
     </header>
 
+    {%- comment -%}
+      Pull all featured projects, get unique categories sorted A-Z,
+      then build one carousel block per category.
+    {%- endcomment -%}
 
-    <!-- ══════════════════════════════════════════════════════════
-         CATEGORY: KITCHEN
-         Slides are ordered by their position in the DOM (1 = first).
-         To show a specific kitchen project first, put its slide first.
-         Via CMS: set "Category Order" = 1 on the project you want first.
-         ══════════════════════════════════════════════════════════ -->
-    <div class="fc-category reveal" data-category="Kitchen">
+    {% assign featured = site.projects | where: "featured", true %}
+    {% assign all_categories = featured | map: "category" | uniq | sort %}
 
-      <!-- Category header bar -->
-      <div class="fc-header">
-        <div class="fc-header-left">
-          <span class="fc-category-label">Kitchen</span>
-          <h3 class="fc-category-title">Kitchen Renovations</h3>
-          <p class="fc-category-desc">Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.</p>
-        </div>
+    {% for cat in all_categories %}
 
-        <div class="fc-controls">
-          <p class="fc-counter" aria-live="polite">
-            Project <strong class="fc-counter-current">1</strong>
-            of <span class="fc-counter-total">2</span>
-          </p>
-          <div class="fc-nav-row">
-            <button class="fc-btn fc-prev" aria-label="Previous kitchen project" disabled>
-              <svg width="18" height="18"><use href="#ic-chev-l"/></svg>
-            </button>
-            <button class="fc-btn fc-next" aria-label="Next kitchen project">
-              <svg width="18" height="18"><use href="#ic-chev-r"/></svg>
-            </button>
+      {% assign cat_projects = featured | where: "category", cat | sort: "category_order" %}
+      {% assign cat_info = site.data.categories.items | where: "name", cat | first %}
+      {% assign cat_title = cat_info.title       | default: cat %}
+      {% assign cat_desc  = cat_info.description | default: "" %}
+      {% assign project_count = cat_projects | size %}
+
+      <div class="fc-category reveal" data-category="{{ cat }}">
+
+        <div class="fc-header">
+          <div class="fc-header-left">
+            <span class="fc-category-label">{{ cat }}</span>
+            <h3 class="fc-category-title">{{ cat_title }}</h3>
+            {% if cat_desc != "" %}<p class="fc-category-desc">{{ cat_desc }}</p>{% endif %}
           </div>
-          <div class="fc-dots" role="tablist" aria-label="Kitchen projects">
-            <button class="fc-dot active" aria-label="Project 1" aria-current="true" role="tab"></button>
-            <button class="fc-dot"        aria-label="Project 2"                      role="tab"></button>
-            <!--
-              ADD A DOT FOR EACH ADDITIONAL KITCHEN PROJECT.
-              Via CMS this is generated automatically.
-            -->
-          </div>
-        </div>
-      </div>
-
-      <div class="fc-track">
-
-        <!-- ── Kitchen Project 1 (category_order: 1 — shown first) ──
-             To make THIS project show first, keep it as the first slide.
-             To reorder: move the fc-slide blocks up/down in the HTML.
-             Via CMS: set "Category Order" on each project. -->
-        <div class="fc-slide active">
-          <div class="fc-slide-meta">
-            <span class="fc-slide-order" aria-hidden="true">01</span>
-            <div class="fc-slide-info">
-              <!-- Edit title and description directly, or via _projects/01-kitchen-westmont.md -->
-              <h4 class="fc-slide-title">Kitchen Renovation — Westmont</h4>
-              <p class="fc-slide-desc">A complete kitchen transformation featuring custom cabinetry, quartz countertops, and modern fixtures — turning an outdated space into the heart of the home.</p>
+          <div class="fc-controls">
+            <p class="fc-counter" aria-live="polite">
+              Project <strong class="fc-counter-current">1</strong>
+              of <span class="fc-counter-total">{{ project_count }}</span>
+            </p>
+            <div class="fc-nav-row">
+              <button class="fc-btn fc-prev" aria-label="Previous {{ cat }} project" disabled>
+                <svg width="18" height="18"><use href="#ic-chev-l"/></svg>
+              </button>
+              <button class="fc-btn fc-next"
+                      aria-label="Next {{ cat }} project"
+                      {% if project_count <= 1 %}disabled{% endif %}>
+                <svg width="18" height="18"><use href="#ic-chev-r"/></svg>
+              </button>
+            </div>
+            <div class="fc-dots" role="tablist" aria-label="{{ cat }} project navigation">
+              {% for p in cat_projects %}
+              <button class="fc-dot{% if forloop.first %} active{% endif %}"
+                      aria-label="Project {{ forloop.index }}"
+                      aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                      role="tab"></button>
+              {% endfor %}
             </div>
           </div>
+        </div>
 
-          <div class="fc-gallery" role="list" aria-label="Kitchen Westmont photos">
-            <!--
-              HOW TO ADD PHOTOS:
-              1. Set data-src="assets/images/uploads/your-photo.jpg" on the .fc-media div
-              2. Replace <div class="fc-placeholder">…</div> with:
-                   <img src="assets/images/uploads/your-photo.jpg" alt="Description" loading="lazy" />
-              The .featured class makes the first image span 2 columns (wide/landscape).
-            -->
-            <div class="fc-media featured" role="listitem" tabindex="0"
-                 data-src="" data-caption="Kitchen — Westmont, Overview">
-              <div class="fc-placeholder">
-                <svg width="40" height="40"><use href="#ic-img"/></svg>
-                <span class="fc-placeholder-text">Featured Photo<br />Replace with &lt;img&gt; tag<br />Set data-src for lightbox</span>
+        <div class="fc-track">
+          {% for project in cat_projects %}
+          {% assign img_count = project.images | size %}
+
+          <div class="fc-slide{% if forloop.first %} active{% endif %}">
+            <div class="fc-slide-meta">
+              <span class="fc-slide-order" aria-hidden="true">
+                {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+              </span>
+              <div class="fc-slide-info">
+                <h4 class="fc-slide-title">{{ project.title }}</h4>
+                <p class="fc-slide-desc">{{ project.description }}</p>
               </div>
             </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Westmont, Detail 1">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
+
+            <div class="fc-gallery" role="list" aria-label="{{ project.title }} photos">
+              {% if img_count > 0 %}
+                {% for img in project.images %}
+                {% if img and img != "" %}
+                <div class="fc-media{% if forloop.first %} featured{% endif %}"
+                     role="listitem" tabindex="0"
+                     data-src="{{ img | relative_url }}"
+                     data-caption="{{ project.title }} — Photo {{ forloop.index }}">
+                  <img src="{{ img | relative_url }}"
+                       alt="{{ project.title }} — Photo {{ forloop.index }}"
+                       loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" />
+                </div>
+                {% else %}
+                <div class="fc-media{% if forloop.first %} featured{% endif %}"
+                     role="listitem" tabindex="0" data-src="" data-caption="{{ project.title }}">
+                  <div class="fc-placeholder">
+                    <svg width="{% if forloop.first %}40{% else %}28{% endif %}"
+                         height="{% if forloop.first %}40{% else %}28{% endif %}">
+                      <use href="#ic-img"/>
+                    </svg>
+                    <span class="fc-placeholder-text">
+                      {% if forloop.first %}Featured Photo{% else %}Add photo{% endif %}<br />Upload via CMS
+                    </span>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+              {% else %}
+                <div class="fc-media featured" role="listitem" tabindex="0" data-src="" data-caption="{{ project.title }}">
+                  <div class="fc-placeholder">
+                    <svg width="40" height="40"><use href="#ic-img"/></svg>
+                    <span class="fc-placeholder-text">No photos yet<br />Upload via CMS &rarr; Featured Projects</span>
+                  </div>
+                </div>
+                <div class="fc-media" role="listitem" aria-hidden="true"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
+                <div class="fc-media" role="listitem" aria-hidden="true"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
+                <div class="fc-media" role="listitem" aria-hidden="true"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
+              {% endif %}
             </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Westmont, Detail 2">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Westmont, Detail 3">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
-            </div>
+
           </div>
-        </div><!-- /.fc-slide -->
-
-        <!-- ── Kitchen Project 2 (category_order: 2) ── -->
-        <div class="fc-slide">
-          <div class="fc-slide-meta">
-            <span class="fc-slide-order" aria-hidden="true">02</span>
-            <div class="fc-slide-info">
-              <h4 class="fc-slide-title">Kitchen Renovation — Oak Park</h4>
-              <p class="fc-slide-desc">Open-concept kitchen remodel with island seating, soft-close drawers, farmhouse sink, and custom tile backsplash — a full gut-to-studs rebuild.</p>
-            </div>
-          </div>
-          <div class="fc-gallery" role="list" aria-label="Kitchen Oak Park photos">
-            <div class="fc-media featured" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Oak Park, Overview">
-              <div class="fc-placeholder"><svg width="40" height="40"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Featured Photo<br />Replace with &lt;img&gt; tag</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Oak Park, Detail 1">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Oak Park, Detail 2">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Kitchen — Oak Park, Detail 3">
-              <div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div>
-            </div>
-          </div>
-        </div><!-- /.fc-slide -->
-
-        <!--
-          ── ADD MORE KITCHEN PROJECTS ──────────────────────────
-          1. Duplicate an .fc-slide block above this comment.
-          2. Set the slide-order number (03, 04, …).
-          3. Update title, description, and image data-src paths.
-          4. Add a new <button class="fc-dot"> in .fc-dots above.
-          5. Increment fc-counter-total from 2 to 3 (etc.).
-          Via CMS: /admin/ → Projects → New Project → Category: Kitchen
-                   Set "Category Order" to control display order.
-          ─────────────────────────────────────────────────────── -->
-
-      </div><!-- /.fc-track -->
-    </div><!-- /.fc-category[Kitchen] -->
-
-
-    <!-- ══════════════════════════════════════════════════════════
-         CATEGORY: BATHROOM
-         ══════════════════════════════════════════════════════════ -->
-    <div class="fc-category reveal" data-category="Bathroom">
-      <div class="fc-header">
-        <div class="fc-header-left">
-          <span class="fc-category-label">Bathroom</span>
-          <h3 class="fc-category-title">Bathroom Remodels</h3>
-          <p class="fc-category-desc">Walk-in showers, heated floors, custom vanities, and full tile work.</p>
+          {% endfor %}
         </div>
-        <div class="fc-controls">
-          <p class="fc-counter" aria-live="polite">
-            Project <strong class="fc-counter-current">1</strong>
-            of <span class="fc-counter-total">2</span>
-          </p>
-          <div class="fc-nav-row">
-            <button class="fc-btn fc-prev" aria-label="Previous bathroom project" disabled>
-              <svg width="18" height="18"><use href="#ic-chev-l"/></svg>
-            </button>
-            <button class="fc-btn fc-next" aria-label="Next bathroom project">
-              <svg width="18" height="18"><use href="#ic-chev-r"/></svg>
-            </button>
-          </div>
-          <div class="fc-dots" role="tablist" aria-label="Bathroom projects">
-            <button class="fc-dot active" aria-label="Project 1" aria-current="true" role="tab"></button>
-            <button class="fc-dot"        aria-label="Project 2"                      role="tab"></button>
-          </div>
-        </div>
+
       </div>
+    {% endfor %}
 
-      <div class="fc-track">
-
-        <!-- Bathroom Project 1 (category_order: 1) -->
-        <div class="fc-slide active">
-          <div class="fc-slide-meta">
-            <span class="fc-slide-order" aria-hidden="true">01</span>
-            <div class="fc-slide-info">
-              <h4 class="fc-slide-title">Bathroom Remodel — Downers Grove</h4>
-              <p class="fc-slide-desc">Full bathroom overhaul from tile to lighting — spa-like retreat with walk-in shower, heated floors, and custom vanity millwork.</p>
-            </div>
-          </div>
-          <div class="fc-gallery" role="list" aria-label="Bathroom Downers Grove photos">
-            <div class="fc-media featured" role="listitem" tabindex="0" data-src="" data-caption="Bathroom — Downers Grove, Overview">
-              <div class="fc-placeholder"><svg width="40" height="40"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Featured Photo<br />Replace with &lt;img&gt; tag</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Bathroom — Detail 1"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Bathroom — Detail 2"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Bathroom — Detail 3"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-          </div>
-        </div>
-
-        <!-- Bathroom Project 2 (category_order: 2) -->
-        <div class="fc-slide">
-          <div class="fc-slide-meta">
-            <span class="fc-slide-order" aria-hidden="true">02</span>
-            <div class="fc-slide-info">
-              <h4 class="fc-slide-title">Master Bath Addition — Naperville</h4>
-              <p class="fc-slide-desc">En-suite master bathroom with soaking tub, double vanity, and large-format porcelain tile throughout walls and floor.</p>
-            </div>
-          </div>
-          <div class="fc-gallery" role="list" aria-label="Master Bath Naperville photos">
-            <div class="fc-media featured" role="listitem" tabindex="0" data-src="" data-caption="Master Bath — Naperville, Overview">
-              <div class="fc-placeholder"><svg width="40" height="40"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Featured Photo<br />Replace with &lt;img&gt; tag</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Master Bath — Detail 1"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Master Bath — Detail 2"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Master Bath — Detail 3"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-          </div>
-        </div>
-
-      </div><!-- /.fc-track -->
-    </div><!-- /.fc-category[Bathroom] -->
-
-
-    <!-- ══════════════════════════════════════════════════════════
-         CATEGORY: EXTERIOR
-         ══════════════════════════════════════════════════════════ -->
-    <div class="fc-category reveal" data-category="Exterior">
-      <div class="fc-header">
-        <div class="fc-header-left">
-          <span class="fc-category-label">Exterior</span>
-          <h3 class="fc-category-title">Exterior Renovations</h3>
-          <p class="fc-category-desc">Siding, roofing, windows, doors, and full curb-appeal transformations.</p>
-        </div>
-        <div class="fc-controls">
-          <p class="fc-counter" aria-live="polite">
-            Project <strong class="fc-counter-current">1</strong>
-            of <span class="fc-counter-total">1</span>
-          </p>
-          <div class="fc-nav-row">
-            <button class="fc-btn fc-prev" aria-label="Previous exterior project" disabled>
-              <svg width="18" height="18"><use href="#ic-chev-l"/></svg>
-            </button>
-            <button class="fc-btn fc-next" aria-label="Next exterior project" disabled>
-              <svg width="18" height="18"><use href="#ic-chev-r"/></svg>
-            </button>
-          </div>
-          <div class="fc-dots" role="tablist" aria-label="Exterior projects">
-            <button class="fc-dot active" aria-label="Project 1" aria-current="true" role="tab"></button>
-          </div>
-        </div>
-      </div>
-      <div class="fc-track">
-        <div class="fc-slide active">
-          <div class="fc-slide-meta">
-            <span class="fc-slide-order" aria-hidden="true">01</span>
-            <div class="fc-slide-info">
-              <h4 class="fc-slide-title">Siding &amp; Roofing Restoration</h4>
-              <p class="fc-slide-desc">Complete exterior restoration including new fiber cement siding, architectural shingles, and updated trim — dramatically boosting curb appeal and energy efficiency.</p>
-            </div>
-          </div>
-          <div class="fc-gallery" role="list" aria-label="Exterior renovation photos">
-            <div class="fc-media featured" role="listitem" tabindex="0" data-src="" data-caption="Exterior Renovation — Overview">
-              <div class="fc-placeholder"><svg width="40" height="40"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Featured Photo<br />Replace with &lt;img&gt; tag</span></div>
-            </div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Exterior — Detail 1"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Exterior — Detail 2"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-            <div class="fc-media" role="listitem" tabindex="0" data-src="" data-caption="Exterior — Detail 3"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
-          </div>
-        </div>
-      </div>
-    </div><!-- /.fc-category[Exterior] -->
-
-
-    <!--
-      ══ HOW TO ADD A NEW CATEGORY BLOCK ════════════════════════
-      1. Copy the entire .fc-category block above.
-      2. Change data-category="YourCategory"
-      3. Update the label, title, description text.
-      4. Update aria-label on the .fc-dots element.
-      5. Replace the slides with your projects.
-      6. Update fc-counter-total and fc-dot count to match.
-      Via CMS: new projects auto-group by their Category field.
-      ════════════════════════════════════════════════════════════ -->
+    {% if all_categories.size == 0 %}
+    <div style="text-align:center;padding:64px 24px;color:var(--muted);">
+      <svg width="48" height="48" style="margin:0 auto 16px;opacity:.28;stroke:currentColor;fill:none;stroke-width:1.4" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <p style="font-family:var(--ff-head);font-size:1.1rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">No Projects Yet</p>
+      <p style="font-size:.88rem;">Add your first project via CMS &rarr; Featured Projects &rarr; New Project</p>
+    </div>
+    {% endif %}
 
   </div><!-- /.container -->
 </section>
@@ -744,7 +610,7 @@ layout: null
 <!-- ============================================================
      CONTACT — edit via CMS → Site Settings → Contact Info & Hours
      Toggle visibility: CMS → Site Settings → Section Visibility
-     Form action: change action="#" to your Formspree/Netlify endpoint
+     Formspree endpoint: CMS → Site Settings → General → Contact Form
      ============================================================ -->
 {% if site.data.visibility.contact != false %}
 <section class="contact-section" id="contact">
@@ -816,12 +682,12 @@ layout: null
             <p class="form-subtitle">We'll respond within one business day.</p>
           </div>
           <!--
-            FORM ACTION:
-            Option A — Formspree: action="https://formspree.io/f/YOUR_ID" method="POST"
-            Option B — Netlify:   add  netlify  attribute → <form netlify>
-            Option C — EmailJS / custom: see main.js
+            Formspree endpoint is set via CMS → Site Settings → General → Contact Form.
+            JS reads data-action and submits via fetch, keeping the success overlay.
           -->
-          <form class="form-body" id="contactForm" action="#" method="POST" novalidate>
+          <form class="form-body" id="contactForm"
+                data-action="{{ site.data.general.formspree_endpoint }}"
+                novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="name">Full Name</label>

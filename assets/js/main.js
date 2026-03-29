@@ -92,35 +92,79 @@
     counters.forEach(el => counterIo.observe(el));
   }
 
-  /* ── Contact form ── */
+  /* ── Contact form — Formspree via fetch ── */
   const form    = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
+
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const btn = form.querySelector('[type="submit"]');
+      const btn          = form.querySelector('[type="submit"]');
       const originalHTML = btn.innerHTML;
-      btn.innerHTML = 'Sending…';
-      btn.disabled = true;
+      const endpoint     = form.dataset.action;   // set by Jekyll from _data/general.yml
 
-      /* -------------------------------------------------------
-         FORM ACTION:
-         Replace this timeout with your real form handler.
-         Options:
-           • Formspree: set action="https://formspree.io/f/XXXXX"
-             and remove preventDefault / success logic
-           • Netlify Forms: add netlify attribute to <form>
-           • Custom endpoint: fetch('/api/contact', { method:'POST', body: new FormData(form) })
-         ------------------------------------------------------- */
-      setTimeout(() => {
-        if (success) success.classList.add('active');
-        form.reset();
+      /* Loading state */
+      btn.innerHTML = 'Sending…';
+      btn.disabled  = true;
+
+      /* ── No endpoint configured — demo mode ── */
+      if (!endpoint || endpoint.trim() === '') {
+        console.warn('PHS: No Formspree endpoint set. Add it via CMS → Site Settings → General → Contact Form.');
+        setTimeout(() => {
+          showSuccess();
+          btn.innerHTML = originalHTML;
+          btn.disabled  = false;
+        }, 800);
+        return;
+      }
+
+      /* ── Live submission to Formspree ── */
+      try {
+        const res = await fetch(endpoint, {
+          method:  'POST',
+          headers: { 'Accept': 'application/json' },
+          body:    new FormData(form),
+        });
+
+        if (res.ok) {
+          showSuccess();
+          form.reset();
+        } else {
+          /* Formspree returned an error — surface it to the user */
+          const data = await res.json().catch(() => ({}));
+          const msg  = (data.errors || []).map(err => err.message).join(', ')
+                       || 'Something went wrong. Please try again or call us directly.';
+          showError(msg);
+        }
+      } catch (_) {
+        /* Network error */
+        showError('Could not send your message. Please check your connection or call us directly.');
+      } finally {
         btn.innerHTML = originalHTML;
-        btn.disabled = false;
-        setTimeout(() => success && success.classList.remove('active'), 5000);
-      }, 1400);
+        btn.disabled  = false;
+      }
     });
+  }
+
+  function showSuccess() {
+    if (!success) return;
+    success.classList.add('active');
+    setTimeout(() => success.classList.remove('active'), 6000);
+  }
+
+  function showError(msg) {
+    /* Reuse the subtitle slot under the form title for the error message */
+    const sub = form && form.closest('.contact-form-card')
+                          .querySelector('.form-subtitle');
+    if (sub) {
+      sub.textContent = msg;
+      sub.style.color = '#f87171';
+      setTimeout(() => {
+        sub.textContent = "We'll respond within one business day.";
+        sub.style.color  = '';
+      }, 6000);
+    }
   }
 
   /* ── Dynamic copyright year ── */

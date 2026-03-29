@@ -21,6 +21,12 @@ cta_phone_label: "Call Us Now"
 # Paste your Facebook Page URL here to link the social section
 facebook_url: ""
 
+# ── Contact Form ──
+# Get your endpoint from https://formspree.io → New Form → copy the URL
+# Format: https://formspree.io/f/XXXXXXXX
+# Leave empty to disable live submissions (form shows success UI for testing only)
+formspree_endpoint: ""
+
 # ── Updates section ──
 updates_heading: "Latest Updates"
 updates_subtext: "Follow along as we share our latest projects, tips, and news."
