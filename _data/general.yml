@@ -20,15 +20,15 @@ cta_phone_label: "Call Us Now"
 # ── Social / Facebook ──
 # Paste your Facebook Page URL here (e.g. https://www.facebook.com/PHSRemodeling)
 facebook_url:         ""
-facebook_gallery_btn: "See All Project Photos"
-facebook_follow_btn:  "Follow Our Page"
+facebook_gallery_btn: "See More Projects"
+facebook_follow_btn:  "Follow Us on Facebook"
 
 # ── Contact Form ──
 # Get your endpoint from https://formspree.io → New Form → copy the URL
 # Format: https://formspree.io/f/XXXXXXXX
 # Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: https://formspree.io/f/xbdpgknz
+formspree_endpoint: ""
 
 # ── Updates / Social section ──
 updates_heading: "Follow Us on Facebook"
-updates_subtext: "See our latest projects, behind-the-scenes content, and client transformations. Follow our page and check out the full photo gallery."
+updates_subtext: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling."

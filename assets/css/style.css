@@ -596,6 +596,7 @@ h1,h2,h3,h4,h5{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to top,rgba(8,17,31,.3) 0%,transparent 55%);
   opacity:0;transition:opacity .25s;
+  pointer-events:none;  /* never block clicks */
 }
 .fc-media:hover{
   transform:translateY(-4px) scale(1.01);
@@ -607,16 +608,18 @@ h1,h2,h3,h4,h5{
   width:100%;height:100%;object-fit:cover;
   position:absolute;inset:0;
   transition:transform .5s var(--ease-o);
+  pointer-events:none;  /* let clicks pass through to .fc-media */
 }
 .fc-media:hover img,.fc-media:hover video{transform:scale(1.05)}
 
 /* Featured (wide) first image */
 .fc-media.featured{grid-column:span 2;aspect-ratio:16/9}
 
-/* Photo placeholder */
+/* Photo placeholder — pointer-events none so clicks reach .fc-media */
 .fc-placeholder{
   display:flex;align-items:center;justify-content:center;
   flex-direction:column;gap:8px;height:100%;padding:14px;text-align:center;
+  pointer-events:none;
 }
 .fc-placeholder svg{opacity:.22;stroke:var(--muted)}
 .fc-placeholder-text{
@@ -640,25 +643,50 @@ h1,h2,h3,h4,h5{
 .feed-header .heading{color:#fff}
 .feed-header .subtext{color:rgba(255,255,255,.38);max-width:none}
 
-.feed-embed{
-  background:rgba(37,99,216,.05);
-  border:1px solid rgba(37,99,216,.18);
-  border-radius:var(--r-md);
-  padding:56px 40px;min-height:260px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:16px;text-align:center;
-  transition:border-color .3s;
+/* ── Facebook / Social section ─────────────────────────────────── */
+.feed-section .label{color:var(--accent-mid)}
+.feed-section > .container{position:relative;z-index:1}
+
+/* Two-column header: text left, buttons right */
+.feed-layout{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:48px;
+  align-items:center;
 }
-.feed-embed:hover{border-color:rgba(37,99,216,.38)}
-.feed-fb-badge{
-  width:52px;height:52px;background:#1877F2;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(24,119,242,.42);
+.feed-text .heading{color:#fff;margin-top:14px;margin-bottom:12px}
+.feed-text .subtext{color:rgba(255,255,255,.42);max-width:480px}
+
+/* Action buttons */
+.feed-actions{
+  display:flex;flex-direction:column;gap:12px;flex-shrink:0;min-width:200px;
 }
-.feed-placeholder-text{
-  font-size:.72rem;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.2);line-height:1.65;
+.feed-actions .btn{
+  width:100%;justify-content:center;
 }
+/* Primary button in dark context gets a brighter shadow */
+.feed-section .btn-primary{
+  box-shadow:0 6px 24px rgba(20,82,184,.45);
+}
+.feed-section .btn-primary:hover{
+  box-shadow:0 10px 32px rgba(20,82,184,.6);
+}
+
+/* Info strip below buttons */
+.feed-info-strip{
+  margin-top:48px;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.feed-info-icon{
+  width:40px;height:40px;background:#1877F2;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(24,119,242,.4);
+}
+.feed-info-text{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.6}
+.feed-info-text a{color:var(--accent-mid);text-decoration:underline;text-underline-offset:3px}
+.feed-info-text a:hover{color:#fff}
 
 /* ── 10. Contact ──────────────────────────────────────────────── */
 .contact-section{padding-block:var(--sec-py);background:var(--white)}
@@ -866,6 +894,9 @@ h1,h2,h3,h4,h5{
   .projects-section-header{flex-direction:column;align-items:flex-start}
   .fc-header{flex-direction:column;align-items:flex-start}
   .fc-controls{align-items:flex-start}
+  .feed-layout{grid-template-columns:1fr}
+  .feed-actions{flex-direction:row;flex-wrap:wrap;min-width:unset}
+  .feed-actions .btn{width:auto}
 }
 
 @media(max-width:640px){

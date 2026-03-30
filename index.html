@@ -614,93 +614,73 @@ layout: null
 
 
 <!-- ============================================================
-     SOCIAL / FACEBOOK — edit via CMS → Site Settings → General
+     SOCIAL / FACEBOOK
+     Edit text + URL: CMS → Site Settings → General / Business Info
      Toggle: CMS → Site Settings → Section Visibility → Updates / Facebook Feed
      ============================================================ -->
 {% if site.data.visibility.updates_feed != false %}
 <section class="feed-section" id="updates">
   <div class="container">
 
-    <!-- Header -->
-    <header class="feed-header reveal">
-      <div class="feed-header-left">
-        <p class="label">Social Media</p>
-        <h2 class="heading" style="margin-top:12px;color:#fff;">
+    <div class="feed-layout reveal">
+
+      <!-- Left: text -->
+      <div class="feed-text">
+        <p class="label">Find Us on Facebook</p>
+        <h2 class="heading">
           {{ site.data.general.updates_heading | default: "Follow Us on Facebook" }}
         </h2>
-        <p class="subtext" style="margin-top:12px;">
-          {{ site.data.general.updates_subtext | default: "See our latest projects, behind-the-scenes content, and client transformations." }}
+        <p class="subtext">
+          {{ site.data.general.updates_subtext | default: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling." }}
         </p>
+
+        <!-- Info strip — shown when no URL is set -->
+        {% unless site.data.general.facebook_url and site.data.general.facebook_url != "" %}
+        <div class="feed-info-strip">
+          <div class="feed-info-icon" aria-hidden="true">
+            <svg width="22" height="22"><use href="#ic-fb"/></svg>
+          </div>
+          <p class="feed-info-text">
+            Add your Facebook page URL via<br />
+            CMS → Site Settings → General → Facebook Page URL
+          </p>
+        </div>
+        {% endunless %}
       </div>
 
-      <!-- CTA buttons — link to Facebook page -->
+      <!-- Right: action buttons -->
       {% if site.data.general.facebook_url and site.data.general.facebook_url != "" %}
-      <div class="feed-cta-buttons reveal reveal-delay-2">
+      <div class="feed-actions">
+        <!-- "See More Projects" — links to Facebook Photos tab -->
         <a href="{{ site.data.general.facebook_url }}/photos"
            target="_blank" rel="noopener noreferrer"
            class="btn btn-primary">
           <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          {{ site.data.general.facebook_gallery_btn | default: "See All Project Photos" }}
+          {{ site.data.general.facebook_gallery_btn | default: "See More Projects" }}
         </a>
+        <!-- "Follow Us on Facebook" — links to Facebook Page -->
         <a href="{{ site.data.general.facebook_url }}"
            target="_blank" rel="noopener noreferrer"
            class="btn btn-ghost">
           <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          {{ site.data.general.facebook_follow_btn | default: "Follow Our Page" }}
+          {{ site.data.general.facebook_follow_btn | default: "Follow Us on Facebook" }}
         </a>
       </div>
-      {% endif %}
-    </header>
-
-    <!-- Embed area -->
-    <div class="feed-embed-wrap reveal reveal-delay-2">
-
-      <!-- Elfsight Facebook widget embed
-           ════════════════════════════════════════════════════════
-           STEP 1: Go to elfsight.com → Create App → Facebook Feed
-                   or Facebook Reviews / Photo Gallery widget
-           STEP 2: Copy the embed code snippet
-           STEP 3: Paste it below, replacing the placeholder div
-           STEP 4: Delete the .feed-embed-placeholder block
-           ════════════════════════════════════════════════════════ -->
-
-      <!-- ↓↓ PASTE ELFSIGHT CODE HERE ↓↓ -->
-      <!-- Example:
-        <script src="https://static.elfsight.com/platform/platform.js" defer></script>
-        <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
-      -->
-
-      <!-- PLACEHOLDER — delete this block once Elfsight code is pasted above -->
-      <div class="feed-embed-placeholder">
-        <div class="feed-fb-badge" aria-hidden="true">
-          <svg width="28" height="28"><use href="#ic-fb"/></svg>
-        </div>
-        <div class="feed-placeholder-body">
-          <p class="feed-placeholder-title">Facebook Feed Coming Soon</p>
-          <p class="feed-placeholder-sub">
-            Paste your Elfsight embed code here to show your Facebook gallery,
-            posts, and reviews live on this page.
-          </p>
-          {% if site.data.general.facebook_url and site.data.general.facebook_url != "" %}
-          <div class="feed-placeholder-actions">
-            <a href="{{ site.data.general.facebook_url }}/photos"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn-primary" style="font-size:.78rem;padding:11px 22px;">
-              <svg width="14" height="14"><use href="#ic-fb"/></svg>
-              View Our Photo Gallery
-            </a>
-            <a href="{{ site.data.general.facebook_url }}"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn-ghost" style="font-size:.78rem;padding:11px 22px;">
-              Follow PHS Remodeling
-            </a>
-          </div>
-          {% endif %}
-        </div>
+      {% else %}
+      <!-- Placeholder buttons shown when no URL is configured -->
+      <div class="feed-actions">
+        <span class="btn btn-primary" style="opacity:.4;cursor:default;">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          See More Projects
+        </span>
+        <span class="btn btn-ghost" style="opacity:.4;cursor:default;">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          Follow Us on Facebook
+        </span>
       </div>
-      <!-- END PLACEHOLDER -->
+      {% endif %}
 
-    </div>
+    </div><!-- /.feed-layout -->
 
   </div>
 </section>
