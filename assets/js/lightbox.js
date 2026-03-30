@@ -1,68 +1,131 @@
 /* ================================================================
    PHS Remodeling — lightbox.js
-   ================================================================
-   Handles the image lightbox for project gallery items.
-   Triggered by clicking any .media-item that has a data-src attribute.
-   Keyboard: Escape = close, ← → = prev/next.
+   Supports: images (.jpg .png .webp .gif) and videos (.mp4 .webm .mov)
+   Triggered by clicking any .fc-media with a non-empty data-src.
+   data-type="image" | "video" tells the viewer which player to use.
+   Keyboard: Escape = close, ← → = navigate, Space = play/pause video.
+   Touch: swipe left/right to navigate.
    ================================================================ */
 
 (function () {
   'use strict';
 
-  const overlay  = document.getElementById('lightbox');
-  const imgEl    = document.getElementById('lightboxImg');
-  const caption  = document.getElementById('lightboxCaption');
-  const counter  = document.getElementById('lightboxCounter');
-  const btnClose = document.getElementById('lightboxClose');
-  const btnPrev  = document.getElementById('lightboxPrev');
-  const btnNext  = document.getElementById('lightboxNext');
-
+  /* ── DOM refs ── */
+  const overlay    = document.getElementById('lightbox');
   if (!overlay) return;
 
-  let gallery = [];  // all clickable items in the current project row
-  let current = 0;   // current index within gallery
+  const mediaWrap  = document.getElementById('lightboxMedia');
+  const imgEl      = document.getElementById('lightboxImg');
+  const vidEl      = document.getElementById('lightboxVid');
+  const caption    = document.getElementById('lightboxCaption');
+  const counter    = document.getElementById('lightboxCounter');
+  const typeBadge  = document.getElementById('lightboxTypeBadge');
+  const btnClose   = document.getElementById('lightboxClose');
+  const btnPrev    = document.getElementById('lightboxPrev');
+  const btnNext    = document.getElementById('lightboxNext');
 
-  /* ── Open ── */
-  function open(items, index) {
-    // Only use items that have a non-empty data-src (real images)
+  let gallery = [];   // filtered items with a real data-src
+  let current = 0;
+
+  /* ─────────────────────────────────────────────────────────────
+     OPEN — called with the item array from a project's gallery
+     and the index of the clicked item.
+     ───────────────────────────────────────────────────────────── */
+  function open(items, clickedIndex) {
+    // Only include items that have a real src
     gallery = items.filter(el => el.dataset.src && el.dataset.src.trim() !== '');
     if (!gallery.length) return;
 
-    current = Math.max(0, Math.min(index, gallery.length - 1));
-    render();
+    // Find the clicked item's position in the filtered gallery
+    const clickedSrc = items[clickedIndex] && items[clickedIndex].dataset.src;
+    const filteredIdx = gallery.findIndex(el => el === items[clickedIndex]);
+    current = filteredIdx >= 0 ? filteredIdx : 0;
 
+    render();
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    // Move focus into lightbox
-    btnClose.focus();
+    btnClose && btnClose.focus();
   }
 
-  /* ── Close ── */
+  /* ─────────────────────────────────────────────────────────────
+     CLOSE
+     ───────────────────────────────────────────────────────────── */
   function close() {
+    // Pause & reset video before closing
+    if (vidEl) {
+      vidEl.pause();
+      vidEl.removeAttribute('src');
+      vidEl.load();
+    }
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-    // Delay clearing src so close animation completes
-    setTimeout(() => { imgEl.src = ''; }, 320);
+
+    // Clear image src after animation
+    setTimeout(() => {
+      if (imgEl) imgEl.src = '';
+    }, 320);
   }
 
-  /* ── Render current image ── */
+  /* ─────────────────────────────────────────────────────────────
+     RENDER — swap between image and video modes
+     ───────────────────────────────────────────────────────────── */
   function render() {
-    const el = gallery[current];
+    const el      = gallery[current];
+    const src     = el.dataset.src || '';
+    const cap     = el.dataset.caption || '';
+    const isVideo = el.dataset.type === 'video' || isVideoUrl(src);
 
-    imgEl.src = el.dataset.src;
-    imgEl.alt = el.dataset.caption || '';
+    // Counter
+    if (counter) {
+      counter.textContent = gallery.length > 1 ? `${current + 1} / ${gallery.length}` : '';
+    }
 
-    if (caption) caption.textContent = el.dataset.caption || '';
-    if (counter) counter.textContent = gallery.length > 1
-      ? `${current + 1} / ${gallery.length}`
-      : '';
+    // Type badge
+    if (typeBadge) {
+      typeBadge.textContent = isVideo ? '▶ Video' : '';
+    }
 
+    // Caption
+    if (caption) caption.textContent = cap;
+
+    // Prev / Next state
     if (btnPrev) btnPrev.disabled = current === 0;
     if (btnNext) btnNext.disabled = current === gallery.length - 1;
+
+    if (isVideo) {
+      // ── Video mode ──
+      if (imgEl) { imgEl.src = ''; imgEl.style.display = 'none'; }
+      if (vidEl) {
+        vidEl.style.display = 'block';
+        vidEl.src = src;
+        vidEl.load();
+        // Autoplay with a small delay so overlay animation finishes first
+        setTimeout(() => vidEl.play().catch(() => {}), 200);
+      }
+    } else {
+      // ── Image mode ──
+      if (vidEl) {
+        vidEl.pause();
+        vidEl.removeAttribute('src');
+        vidEl.load();
+        vidEl.style.display = 'none';
+      }
+      if (imgEl) {
+        imgEl.style.display = 'block';
+        imgEl.src  = src;
+        imgEl.alt  = cap;
+      }
+    }
   }
 
-  /* ── Navigate ── */
+  /* Helper — detect video by file extension */
+  function isVideoUrl(url) {
+    return /\.(mp4|webm|mov|ogg)(\?|$)/i.test(url);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     NAVIGATE
+     ───────────────────────────────────────────────────────────── */
   function prev() {
     if (current > 0) { current--; render(); }
   }
@@ -70,15 +133,14 @@
     if (current < gallery.length - 1) { current++; render(); }
   }
 
-  /* ── Bind gallery clicks ──────────────────────────────────── */
-  document.querySelectorAll('.project-gallery').forEach(galleryEl => {
-    const items = Array.from(galleryEl.querySelectorAll('.media-item'));
+  /* ─────────────────────────────────────────────────────────────
+     BIND CLICKS — attach to every .fc-gallery on the page
+     ───────────────────────────────────────────────────────────── */
+  document.querySelectorAll('.fc-gallery').forEach(galleryEl => {
+    const items = Array.from(galleryEl.querySelectorAll('.fc-media'));
 
     items.forEach((item, i) => {
-      // Click
       item.addEventListener('click', () => open(items, i));
-
-      // Keyboard (Enter / Space)
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -88,38 +150,62 @@
     });
   });
 
-  /* ── Lightbox controls ── */
-  if (btnClose) btnClose.addEventListener('click', close);
-  if (btnPrev)  btnPrev.addEventListener('click',  prev);
-  if (btnNext)  btnNext.addEventListener('click',  next);
+  /* ─────────────────────────────────────────────────────────────
+     CONTROLS
+     ───────────────────────────────────────────────────────────── */
+  btnClose && btnClose.addEventListener('click', close);
+  btnPrev  && btnPrev.addEventListener('click', prev);
+  btnNext  && btnNext.addEventListener('click', next);
 
-  // Click outside image to close
+  // Click backdrop to close (but not the video/image itself)
   overlay.addEventListener('click', e => {
-    if (e.target === overlay) close();
+    if (e.target === overlay || e.target === mediaWrap) close();
   });
 
-  // Keyboard shortcuts
+  // Keyboard
   document.addEventListener('keydown', e => {
     if (!overlay.classList.contains('active')) return;
     switch (e.key) {
-      case 'Escape':     close(); break;
-      case 'ArrowLeft':  prev();  break;
-      case 'ArrowRight': next();  break;
+      case 'Escape':
+        close();
+        break;
+      case 'ArrowLeft':
+        prev();
+        break;
+      case 'ArrowRight':
+        next();
+        break;
+      case ' ':
+        // Space toggles play/pause on video
+        if (vidEl && vidEl.style.display !== 'none') {
+          e.preventDefault();
+          vidEl.paused ? vidEl.play() : vidEl.pause();
+        }
+        break;
     }
   });
 
-  /* ── Swipe support (touch) ── */
+  /* ─────────────────────────────────────────────────────────────
+     SWIPE (touch)
+     ───────────────────────────────────────────────────────────── */
   let touchStartX = null;
+  let touchStartY = null;
+
   overlay.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
   }, { passive: true });
+
   overlay.addEventListener('touchend', e => {
     if (touchStartX === null) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) {
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only trigger for primarily horizontal swipes
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
       dx < 0 ? next() : prev();
     }
     touchStartX = null;
+    touchStartY = null;
   }, { passive: true });
 
 })();
