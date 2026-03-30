@@ -27,7 +27,7 @@ facebook_follow_btn:  "Follow Our Page"
 # Get your endpoint from https://formspree.io → New Form → copy the URL
 # Format: https://formspree.io/f/XXXXXXXX
 # Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: ""
+formspree_endpoint: https://formspree.io/f/xbdpgknz
 
 # ── Updates / Social section ──
 updates_heading: "Follow Us on Facebook"

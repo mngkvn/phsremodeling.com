@@ -1,19 +1,9 @@
-# ================================================================
-# _data/hero.yml
-# Managed via Decap CMS → Site Settings → Hero Section
-# ================================================================
-
-# ── Background photo ──
-image: ""
-alt:   "PHS Remodeling — Home Renovations"
-
-# ── Text content ──
-eyebrow:    "PHS Remodeling"
-headline_1: "Built To Last."
-headline_2: "Crafted With Pride."
-sub:        "Interior & Exterior Renovations"
-
-# ── Button labels ──
-btn_primary: "Contact Us"
-btn_ghost:   "View Our Work"
-trust_badge: "Licensed & Insured"
+image: https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/485132074_1238642494754068_886705055850161610_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=103&ccb=1-7&_nc_sid=2a1932&_nc_ohc=RL4xFINbIq0Q7kNvwHa2WYc&_nc_oc=AdrXSkDF_kBi8fMJuriaiHQtWBOOTvebOSjil0bXgFA7QL4ES2SEDur6WZIPbmJxkVnK57VGF9ovmYXv9wv1CsvG&_nc_zt=23&se=-1&_nc_ht=scontent-ord5-2.xx&_nc_gid=ViQAvQ_6zqPUzuLoe48WRg&_nc_ss=7a32e&oh=00_Afx1MrT_uSPV83hd_rViPOkf51Pw5cVH37argAATwcd00w&oe=69CF0095
+alt: PH Remodeling — Home Renovations
+eyebrow: PH Remodeling
+headline_1: Built To Last.
+headline_2: Crafted With Pride.
+sub: Interior & Exterior Renovations
+btn_primary: Contact Us
+btn_ghost: View Our Work
+trust_badge: Licensed & Insured

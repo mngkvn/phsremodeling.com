@@ -1,18 +1,12 @@
-# ================================================================
-# _data/services.yml
-# Edit this list to add or remove services shown in the hero section
-# ================================================================
-
 list:
   - Kitchens
   - Bathrooms
-  - Drywall
-  - Handyman
   - Siding
   - Windows
   - Doors
   - Painting
   - Roofing
   - Basement Finishing
-  - Electrical
-  - Plumbing
+  - Free Roof Inspection
+  - Public Adjuster
+  - "Concrete Coating: Polyurea & Epoxy"
