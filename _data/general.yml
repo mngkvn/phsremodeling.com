@@ -19,7 +19,7 @@ cta_phone_label: "Call Us Now"
 
 # ── Social / Facebook ──
 # Paste your Facebook Page URL here (e.g. https://www.facebook.com/PHSRemodeling)
-facebook_url:         ""
+facebook_url:         https://www.facebook.com/profile.php?id=100058249874394
 facebook_gallery_btn: "See More Projects"
 facebook_follow_btn:  "Follow Us on Facebook"
 
@@ -27,7 +27,7 @@ facebook_follow_btn:  "Follow Us on Facebook"
 # Get your endpoint from https://formspree.io → New Form → copy the URL
 # Format: https://formspree.io/f/XXXXXXXX
 # Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: ""
+formspree_endpoint: https://formspree.io/f/xbdpgknz
 
 # ── Updates / Social section ──
 updates_heading: "Follow Us on Facebook"
