@@ -199,3 +199,317 @@
   .lightbox-nav{display:none}
   .lightbox-close{inset-block-start:-44px}
 }
+<<<<<<< HEAD
+=======
+
+/* ================================================================
+   LIGHTBOX — image & video viewer (replaces old lightbox styles)
+   ================================================================ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(4, 8, 18, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Top bar */
+.lightbox-topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.lightbox-counter {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.22);
+  min-width: 60px;
+}
+
+.lightbox-type-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+}
+
+.lightbox-close {
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.lightbox-close:hover {
+  background: rgba(20,82,184,0.3);
+  border-color: rgba(20,82,184,0.55);
+  color: #fff;
+}
+
+/* Media area */
+.lightbox-media {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  box-shadow: 0 40px 100px rgba(4,8,18,0.8), 0 0 0 1px rgba(20,82,184,0.15);
+  transform: scale(0.94);
+  transition: transform 0.4s var(--ease-o);
+  display: block;
+}
+.lightbox-overlay.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-vid {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: var(--r-sm);
+  box-shadow: 0 40px 100px rgba(4,8,18,0.8);
+  background: #000;
+  display: none;
+  /* Video controls styling */
+  accent-color: var(--accent);
+}
+
+/* Caption */
+.lightbox-caption {
+  margin-top: 12px;
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.04em;
+  text-align: center;
+  min-height: 20px;
+  flex-shrink: 0;
+}
+
+/* Prev / Next arrow buttons — float on sides */
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  z-index: 2;
+}
+.lightbox-nav-btn:hover {
+  background: rgba(20,82,184,0.28);
+  border-color: rgba(20,82,184,0.5);
+  color: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.lightbox-nav-btn:disabled {
+  opacity: 0.15;
+  cursor: default;
+  transform: translateY(-50%);
+}
+.lightbox-prev { left: -62px; }
+.lightbox-next { right: -62px; }
+
+/* ── Video thumbnail in gallery grid ── */
+.fc-media-video {
+  position: relative;
+  cursor: pointer;
+}
+/* Thumbnail cover (if provided) */
+.fc-media-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+/* Default dark bg when no thumbnail */
+.fc-media-video:not(:has(img)) {
+  background: var(--dark3);
+}
+
+/* Play button overlay */
+.fc-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4,8,18,0.35);
+  transition: background 0.22s;
+  z-index: 2;
+}
+.fc-media-video:hover .fc-play-overlay {
+  background: rgba(20,82,184,0.3);
+}
+.fc-play-overlay svg {
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+  transition: transform 0.22s var(--ease-o);
+}
+.fc-media-video:hover .fc-play-overlay svg {
+  transform: scale(1.12);
+}
+
+/* "Video" badge — bottom-left of thumbnail */
+.fc-video-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  background: rgba(20,82,184,0.85);
+  color: #fff;
+  border-radius: var(--r-xs);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Facebook / Social section ── */
+.feed-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.feed-header-left { max-width: 520px; }
+
+.feed-cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.feed-embed-wrap {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+/* Placeholder shown until Elfsight code is pasted */
+.feed-embed-placeholder {
+  background: rgba(37,99,216,0.06);
+  border: 1px solid rgba(37,99,216,0.18);
+  border-radius: var(--r-md);
+  padding: 52px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  transition: border-color 0.3s;
+}
+.feed-embed-placeholder:hover {
+  border-color: rgba(37,99,216,0.35);
+}
+
+.feed-fb-badge {
+  width: 56px;
+  height: 56px;
+  background: #1877F2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(24,119,242,0.42);
+  flex-shrink: 0;
+}
+
+.feed-placeholder-body { flex: 1; min-width: 220px; }
+
+.feed-placeholder-title {
+  font-family: var(--ff-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.feed-placeholder-sub {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.32);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.feed-placeholder-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .lightbox-prev { left: -50px; }
+  .lightbox-next { right: -50px; }
+}
+@media (max-width: 680px) {
+  .feed-header { flex-direction: column; align-items: flex-start; }
+  .feed-embed-placeholder { flex-direction: column; padding: 36px 28px; }
+}
+@media (max-width: 600px) {
+  .lightbox-prev,
+  .lightbox-next { display: none; }
+  .lightbox-img,
+  .lightbox-vid { max-height: 60vh; }
+}
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
