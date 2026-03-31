@@ -1,0 +1,34 @@
+# ================================================================
+# _data/general.yml
+# Managed via Decap CMS → Site Settings → General / Business Info
+# ================================================================
+
+# ── Business identity ──
+business_name: "PHS Remodeling"
+tagline:       "phsremodeling.com"
+meta_description: "PHS Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
+
+# ── Footer ──
+footer_description: "Dedicated to delivering premier craftsmanship and exceptional customer service on every interior and exterior home renovation project."
+
+# ── CTA Banner ──
+cta_eyebrow:  "Free Consultation"
+cta_heading:  "Ready to Transform Your Home?"
+cta_subtext:  "From a single room to a full exterior overhaul — we handle every project with the same attention to detail and commitment to excellence."
+cta_phone_label: "Call Us Now"
+
+# ── Social / Facebook ──
+# Paste your Facebook Page URL here (e.g. https://www.facebook.com/PHSRemodeling)
+facebook_url:         ""
+facebook_gallery_btn: "See More Projects"
+facebook_follow_btn:  "Follow Us on Facebook"
+
+# ── Contact Form ──
+# Get your endpoint from https://formspree.io → New Form → copy the URL
+# Format: https://formspree.io/f/XXXXXXXX
+# Leave empty to disable live submissions (form shows success UI for testing only)
+formspree_endpoint: ""
+
+# ── Updates / Social section ──
+updates_heading: "Follow Us on Facebook"
+updates_subtext: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling."

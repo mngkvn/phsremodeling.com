@@ -1,0 +1,29 @@
+items:
+  - name: Kitchen
+    title: Kitchen Renovations
+    description: Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.
+  - name: Bathroom
+    title: Bathroom Remodels
+    description: Walk-in showers, heated floors, custom vanities, and full tile work.
+  - name: Basement
+    title: Basement Finishing
+    description: Full basement transformations — entertainment rooms, home offices,
+      and more.
+  - name: Exterior
+    title: Exterior Renovations
+    description: Siding, roofing, windows, doors, and full curb-appeal transformations.
+  - name: Roofing
+    title: Roofing
+    description: Architectural shingles, flat roofs, repairs, and full replacements.
+  - name: Siding
+    title: Siding
+    description: Fiber cement, vinyl, and wood siding installation and replacement.
+  - name: Windows & Doors
+    title: Windows & Doors
+    description: Energy-efficient window replacements and custom door installations.
+  - name: Painting
+    title: Painting
+    description: Interior and exterior painting with premium finishes and clean lines.
+  - name: Other
+    title: Other Projects
+    description: Additional renovation and remodeling services tailored to your needs.
