@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ================================================================
 # _data/general.yml
 # Managed via Decap CMS → Site Settings → General / Business Info
@@ -37,6 +38,21 @@ facebook_url:         ""
 facebook_gallery_btn: "See More Projects"
 facebook_follow_btn:  "Follow Us on Facebook"
 >>>>>>> parent of 44c2bc7 (Fixed Lightbox)
+=======
+business_name: PH Remodeling
+tagline: phsremodeling.com
+meta_description: PHS Remodeling — licensed, bonded & insured home renovation
+  experts. Kitchens, bathrooms, roofing, siding, and more.
+footer_description: Dedicated to delivering premier craftsmanship and
+  exceptional customer service on every interior and exterior home renovation
+  project.
+cta_eyebrow: Free Consultation
+cta_heading: Ready to Transform Your Home?
+cta_subtext: From a single room to a full exterior overhaul — we handle every
+  project with the same attention to detail and commitment to excellence.
+cta_phone_label: Call Us Now
+facebook_url: ""
+>>>>>>> parent of d827440 (Changed lightbox to support videos)
 
 # ── Contact Form ──
 # Get your endpoint from https://formspree.io → New Form → copy the URL
@@ -44,6 +60,12 @@ facebook_follow_btn:  "Follow Us on Facebook"
 # Leave empty to disable live submissions (form shows success UI for testing only)
 formspree_endpoint: ""
 
+<<<<<<< HEAD
 # ── Updates / Social section ──
 updates_heading: "Follow Us on Facebook"
 updates_subtext: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling."
+=======
+# ── Updates section ──
+updates_heading: "Latest Updates"
+updates_subtext: "Follow along as we share our latest projects, tips, and news."
+>>>>>>> parent of d827440 (Changed lightbox to support videos)

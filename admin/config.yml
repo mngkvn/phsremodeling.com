@@ -27,6 +27,7 @@
 # 5. Push to GitHub and visit phsremodeling.com/admin/
 # ─────────────────────────────────────────────────────────────────
 
+
 # Use DecapBridge PKCE auth (required)
 backend:
   name: git-gateway
@@ -132,31 +133,9 @@ collections:
           name:   "image"
           widget: "image"
 
-      - label: "Project Videos"
-        name:  "videos"
-        widget: "list"
-        label_singular: "Video"
-        max:   4
-        required: false
-        hint: >
-          Videos appear after photos in the gallery with a play button overlay.
-          Clicking opens the video full-screen with controls.
-          Best: MP4 H.264, under 50 MB. Short clips work best (30–90 sec).
-        fields:
-          - label:    "Video File (MP4)"
-            name:     "src"
-            widget:   "file"
-            hint:     "Upload an .mp4 video file."
-          - label:    "Thumbnail Image"
-            name:     "thumb"
-            widget:   "image"
-            required: false
-            hint:     "Preview image shown in the grid. Leave empty to use a default video icon."
-          - label:    "Caption"
-            name:     "caption"
-            widget:   "string"
-            required: false
-            hint:     "Short label shown under the video in the viewer."
+
+  # ==============================================================
+  # COLLECTION 2 — Site Settings
   # (files collection — each entry maps to exactly ONE _data file)
   # ==============================================================
   - name:  "settings"
@@ -226,19 +205,7 @@ collections:
             name:  "facebook_url"
             widget: "string"
             required: false
-            hint:  "Full URL to your Facebook page. e.g. https://www.facebook.com/PHSRemodeling"
-
-          - label: "Facebook — Gallery Button Label"
-            name:  "facebook_gallery_btn"
-            widget: "string"
-            default: "See All Project Photos"
-            hint:  "Label on the button that links to your Facebook photos album."
-
-          - label: "Facebook — Follow Button Label"
-            name:  "facebook_follow_btn"
-            widget: "string"
-            default: "Follow Our Page"
-            hint:  "Label on the button that links to your Facebook page."
+            hint:  "Full URL to your Facebook page. e.g. https://www.facebook.com/phsremodeling — used to link the social section."
 
           - label: "Updates Section — Heading"
             name:  "updates_heading"
