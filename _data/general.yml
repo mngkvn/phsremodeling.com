@@ -36,7 +36,9 @@ elfsight_widget_id: https://8d61c91296db4809a4b33fa68cb15fdb.elf.site
 # Format: https://formspree.io/f/XXXXXXXX
 # Leave empty to disable live submissions (form shows success UI for testing only)
 formspree_endpoint: https://formspree.io/f/xbdpgknz
-
-# ── Updates / Social section ──
-updates_heading: "Find Us on Facebook"
-updates_subtext: "Browse our latest project photos, before & afters, and client updates."
+facebook_url: https://www.facebook.com/profile.php?id=100058249874394
+facebook_gallery_btn: " "
+facebook_follow_btn: Follow Us on Facebook
+updates_heading: Find Us on Facebook
+elfsight_widget_id: ""
+updates_subtext: Browse our latest project photos, before & afters, and client updates.
