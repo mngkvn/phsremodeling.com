@@ -3,6 +3,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 =======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
    Supports images and videos (.mp4 .webm .mov).
@@ -28,6 +31,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 =======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
   /* ── DOM refs ── */
@@ -42,6 +48,7 @@
   const btnClose  = document.getElementById('lightboxClose');
   const btnPrev   = document.getElementById('lightboxPrev');
   const btnNext   = document.getElementById('lightboxNext');
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   let gallery = [];  // items with real data-src, for the current project
@@ -107,6 +114,22 @@
     gallery = items.filter(el => el.dataset.src && el.dataset.src.trim() !== '');
     if (!gallery.length) return;
 
+=======
+
+  let gallery = [];  // items with real data-src, for the current project
+  let current = 0;
+
+  /* ─────────────────────────────────────────────
+     OPEN
+     items    = all .fc-media in the clicked gallery
+     clickIdx = index of the clicked item (in `items`)
+     ───────────────────────────────────────────── */
+  function open(items, clickIdx) {
+    /* Build the viewable gallery — only items that have a real src */
+    gallery = items.filter(el => el.dataset.src && el.dataset.src.trim() !== '');
+    if (!gallery.length) return;
+
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
     /* Find position of clicked item inside the filtered gallery */
     const clicked   = items[clickIdx];
     const galleryIdx = gallery.indexOf(clicked);
@@ -138,6 +161,7 @@
   /* ─────────────────────────────────────────────
      CLOSE
      ───────────────────────────────────────────── */
+<<<<<<< HEAD
 <<<<<<< HEAD
   function close() {
     if (vidEl) {
@@ -262,13 +286,21 @@
   }
 
   /* ── Close ── */
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
   function close() {
+    if (vidEl) {
+      vidEl.pause();
+      vidEl.removeAttribute('src');
+      vidEl.load();
+    }
     overlay.classList.remove('active');
     document.body.style.overflow = '';
     // Delay clearing src so close animation completes
     setTimeout(() => { imgEl.src = ''; }, 320);
   }
 
+<<<<<<< HEAD
   /* ── Render current image ── */
   function render() {
     const el = gallery[current];
@@ -321,6 +353,21 @@
     if (typeBadge) typeBadge.textContent = isVideo ? '▶ Video' : '';
     if (caption)   caption.textContent   = cap;
 
+=======
+  /* ─────────────────────────────────────────────
+     RENDER — swap between image / video player
+     ───────────────────────────────────────────── */
+  function render() {
+    const el      = gallery[current];
+    const src     = el.dataset.src || '';
+    const cap     = el.dataset.caption || '';
+    const isVideo = el.dataset.type === 'video' || /\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(src);
+
+    if (counter)   counter.textContent   = gallery.length > 1 ? `${current + 1} / ${gallery.length}` : '';
+    if (typeBadge) typeBadge.textContent = isVideo ? '▶ Video' : '';
+    if (caption)   caption.textContent   = cap;
+
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
     if (btnPrev) btnPrev.disabled = current === 0;
     if (btnNext) btnNext.disabled = current === gallery.length - 1;
 
@@ -375,6 +422,9 @@
       item.style.cursor = 'zoom-in';
 
       item.addEventListener('click', () => open(allItems, i));
+<<<<<<< HEAD
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
+=======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -388,6 +438,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 =======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
   /* ─────────────────────────────────────────────
@@ -397,6 +450,7 @@
   if (btnPrev)  btnPrev.addEventListener('click', prev);
   if (btnNext)  btnNext.addEventListener('click', next);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
   /* ── Lightbox controls ── */
@@ -432,6 +486,8 @@
   });
 
 =======
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 
   overlay.addEventListener('click', e => {
     if (e.target === overlay) close();
@@ -448,6 +504,9 @@
     }
   });
 
+<<<<<<< HEAD
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
+=======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
   /* ─────────────────────────────────────────────
      SWIPE (touch)
@@ -462,6 +521,7 @@
     const dx = e.changedTouches[0].clientX - tx;
     const dy = e.changedTouches[0].clientY - ty;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   // Keyboard shortcuts
@@ -484,6 +544,8 @@
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) {
 >>>>>>> parent of d827440 (Changed lightbox to support videos)
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 =======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
       dx < 0 ? next() : prev();

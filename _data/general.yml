@@ -34,6 +34,7 @@ facebook_follow_btn: "Follow Us on Facebook"
 # Leave empty to show the placeholder until your widget is ready
 elfsight_widget_id: ""
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Paste your Facebook Page URL here (e.g. https://www.facebook.com/PHSRemodeling)
 facebook_url:         ""
@@ -60,6 +61,8 @@ facebook_url: ""
 >>>>>>> parent of d827440 (Changed lightbox to support videos)
 =======
 >>>>>>> parent of d827440 (Changed lightbox to support videos)
+=======
+>>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 =======
 >>>>>>> parent of 56bfe39 (Removed Video Capability. Added Elfsight)
 
