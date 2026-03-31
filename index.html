@@ -600,13 +600,13 @@ layout: null
 <!-- ============================================================
      SOCIAL / FACEBOOK
      Edit text + URL: CMS → Site Settings → General / Business Info
-     Elfsight widget ID: CMS → Site Settings → General → Elfsight Facebook Widget ID
      Toggle: CMS → Site Settings → Section Visibility → Updates / Facebook Feed
      ============================================================ -->
 {% if site.data.visibility.updates_feed != false %}
 <section class="feed-section" id="updates">
   <div class="container">
 
+<<<<<<< HEAD
     <!-- Section header -->
     <header class="feed-header reveal">
       <p class="label">Social Media</p>
@@ -637,11 +637,21 @@ layout: null
         <p class="feed-placeholder-body">
           Add your Elfsight widget ID in the CMS to display your Facebook photo gallery here.<br />
           CMS → Site Settings → General → Elfsight Facebook Widget ID
-        </p>
-      </div>
-    </div>
-    {% endif %}
+=======
+    <div class="feed-layout reveal">
 
+      <!-- Left: text -->
+      <div class="feed-text">
+        <p class="label">Find Us on Facebook</p>
+        <h2 class="heading">
+          {{ site.data.general.updates_heading | default: "Follow Us on Facebook" }}
+        </h2>
+        <p class="subtext">
+          {{ site.data.general.updates_subtext | default: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling." }}
+>>>>>>> parent of 44c2bc7 (Fixed Lightbox)
+        </p>
+
+<<<<<<< HEAD
     <!-- Follow button — always shown -->
     {% if site.data.social.facebook_url and site.data.social.facebook_url != "" %}
     <div class="feed-follow-wrap reveal reveal-delay-2">
@@ -653,20 +663,61 @@ layout: null
       </a>
     </div>
     {% endif %}
+=======
+        <!-- Info strip — shown when no URL is set -->
+        {% unless site.data.general.facebook_url and site.data.general.facebook_url != "" %}
+        <div class="feed-info-strip">
+          <div class="feed-info-icon" aria-hidden="true">
+            <svg width="22" height="22"><use href="#ic-fb"/></svg>
+          </div>
+          <p class="feed-info-text">
+            Add your Facebook page URL via<br />
+            CMS → Site Settings → General → Facebook Page URL
+          </p>
+        </div>
+        {% endunless %}
+      </div>
+
+      <!-- Right: action buttons -->
+      {% if site.data.general.facebook_url and site.data.general.facebook_url != "" %}
+      <div class="feed-actions">
+        <!-- "See More Projects" — links to Facebook Photos tab -->
+        <a href="{{ site.data.general.facebook_url }}/photos"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-primary">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          {{ site.data.general.facebook_gallery_btn | default: "See More Projects" }}
+        </a>
+        <!-- "Follow Us on Facebook" — links to Facebook Page -->
+        <a href="{{ site.data.general.facebook_url }}"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-ghost">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          {{ site.data.general.facebook_follow_btn | default: "Follow Us on Facebook" }}
+        </a>
+      </div>
+      {% else %}
+      <!-- Placeholder buttons shown when no URL is configured -->
+      <div class="feed-actions">
+        <span class="btn btn-primary" style="opacity:.4;cursor:default;">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          See More Projects
+        </span>
+        <span class="btn btn-ghost" style="opacity:.4;cursor:default;">
+          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
+          Follow Us on Facebook
+        </span>
+      </div>
+      {% endif %}
+
+    </div><!-- /.feed-layout -->
+>>>>>>> parent of 44c2bc7 (Fixed Lightbox)
 
   </div>
 </section>
 {% endif %}
 
 
-
-
-
-<!-- ============================================================
-     CONTACT — edit via CMS → Site Settings → Contact Info & Hours
-     Toggle visibility: CMS → Site Settings → Section Visibility
-     Formspree endpoint: CMS → Site Settings → General → Contact Form
-     ============================================================ -->
 <!-- ============================================================
      CONTACT — edit via CMS → Site Settings → Contact Info & Hours
      Toggle visibility: CMS → Site Settings → Section Visibility

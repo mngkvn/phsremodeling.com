@@ -647,72 +647,46 @@ h1,h2,h3,h4,h5{
 .feed-section .label{color:var(--accent-mid)}
 .feed-section > .container{position:relative;z-index:1}
 
-/* Header — centered */
-.feed-header{
-  text-align:center;
-  margin-bottom:40px;
-}
-.feed-header .heading{color:#fff;margin-top:14px;margin-bottom:12px}
-.feed-header .subtext{
-  color:rgba(255,255,255,.42);
-  margin-inline:auto;  /* center the max-width subtext */
-}
-
-/* Elfsight widget wrapper — full width */
-.feed-widget-wrap{
-  position:relative;
-  z-index:1;
-  border-radius:var(--r-md);
-  overflow:hidden;
-  background:rgba(255,255,255,.02);
-  /* Let the widget control its own height */
-  min-height:200px;
-}
-
-/* Placeholder shown until widget ID is added */
-.feed-widget-placeholder{
-  background:rgba(37,99,216,.06);
-  border:1px solid rgba(37,99,216,.18);
-  border-radius:var(--r-md);
-  padding:48px 36px;
-  display:flex;
+/* Two-column header: text left, buttons right */
+.feed-layout{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:48px;
   align-items:center;
-  gap:24px;
-  flex-wrap:wrap;
 }
-.feed-fb-icon{
-  width:52px;height:52px;background:#1877F2;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  box-shadow:0 6px 20px rgba(24,119,242,.4);
-}
-.feed-placeholder-heading{
-  font-family:var(--ff-head);font-size:1rem;font-weight:700;
-  color:rgba(255,255,255,.6);text-transform:uppercase;
-  letter-spacing:.04em;margin-bottom:6px;
-}
-.feed-placeholder-body{
-  font-size:.84rem;color:rgba(255,255,255,.3);line-height:1.65;
-}
+.feed-text .heading{color:#fff;margin-top:14px;margin-bottom:12px}
+.feed-text .subtext{color:rgba(255,255,255,.42);max-width:480px}
 
-/* Follow button row — centered below the widget */
-.feed-follow-wrap{
-  display:flex;
-  justify-content:center;
-  margin-top:32px;
+/* Action buttons */
+.feed-actions{
+  display:flex;flex-direction:column;gap:12px;flex-shrink:0;min-width:200px;
 }
-.feed-follow-btn{
-  padding:15px 40px;
-  font-size:.86rem;
+.feed-actions .btn{
+  width:100%;justify-content:center;
+}
+/* Primary button in dark context gets a brighter shadow */
+.feed-section .btn-primary{
   box-shadow:0 6px 24px rgba(20,82,184,.45);
 }
-.feed-follow-btn:hover{
+.feed-section .btn-primary:hover{
   box-shadow:0 10px 32px rgba(20,82,184,.6);
 }
 
-@media(max-width:640px){
-  .feed-widget-placeholder{flex-direction:column;padding:32px 24px}
-  .feed-follow-btn{width:100%}
+/* Info strip below buttons */
+.feed-info-strip{
+  margin-top:48px;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
 }
+.feed-info-icon{
+  width:40px;height:40px;background:#1877F2;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(24,119,242,.4);
+}
+.feed-info-text{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.6}
+.feed-info-text a{color:var(--accent-mid);text-decoration:underline;text-underline-offset:3px}
+.feed-info-text a:hover{color:#fff}
 
 /* ── 10. Contact ──────────────────────────────────────────────── */
 .contact-section{padding-block:var(--sec-py);background:var(--white)}
@@ -921,7 +895,6 @@ h1,h2,h3,h4,h5{
   .fc-header{flex-direction:column;align-items:flex-start}
   .fc-controls{align-items:flex-start}
   .feed-layout{grid-template-columns:1fr}
-  /* (feed-layout removed — feed is now single column) */
   .feed-actions{flex-direction:row;flex-wrap:wrap;min-width:unset}
   .feed-actions .btn{width:auto}
 }
