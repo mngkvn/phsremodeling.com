@@ -49,7 +49,6 @@ layout: null
   <symbol id="ic-star"     viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor"/></symbol>
   <symbol id="ic-img"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
   <symbol id="ic-play"     viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.55)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></symbol>
-  <symbol id="ic-video"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
   <symbol id="ic-ext-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
 </svg>
 
@@ -480,21 +479,6 @@ layout: null
                 <div class="fc-media" role="listitem" aria-hidden="true"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
                 <div class="fc-media" role="listitem" aria-hidden="true"><div class="fc-placeholder"><svg width="28" height="28"><use href="#ic-img"/></svg><span class="fc-placeholder-text">Add photo</span></div></div>
               {% endif %}
-
-              {%- comment -%} Videos — rendered after photos {%- endcomment -%}
-              {% if project.videos %}
-                {% for vid in project.videos %}
-                {% if vid.src and vid.src != "" %}
-                <div class="fc-media fc-media-video"
-                     role="listitem" tabindex="0"
-                     data-type="video"
-                     data-src="{{ vid.src | relative_url }}"
-                     data-caption="{{ vid.caption | default: project.title }}">
-                  {% if vid.thumb and vid.thumb != "" %}
-                  <img src="{{ vid.thumb | relative_url }}"
-                       alt="{{ vid.caption | default: project.title }} — video thumbnail"
-                       loading="lazy" />
-                  {% endif %}
                   <!-- Play button overlay -->
                   <div class="fc-play-overlay" aria-hidden="true">
                     <svg width="52" height="52"><use href="#ic-play"/></svg>
@@ -616,77 +600,73 @@ layout: null
 <!-- ============================================================
      SOCIAL / FACEBOOK
      Edit text + URL: CMS → Site Settings → General / Business Info
+     Elfsight widget ID: CMS → Site Settings → General → Elfsight Facebook Widget ID
      Toggle: CMS → Site Settings → Section Visibility → Updates / Facebook Feed
      ============================================================ -->
 {% if site.data.visibility.updates_feed != false %}
 <section class="feed-section" id="updates">
   <div class="container">
 
-    <div class="feed-layout reveal">
+    <!-- Section header -->
+    <header class="feed-header reveal">
+      <p class="label">Social Media</p>
+      <h2 class="heading" style="color:#fff;margin-top:12px;">
+        {{ site.data.social.updates_heading | default: "Find Us on Facebook" }}
+      </h2>
+      <p class="subtext" style="margin-top:12px;">
+        {{ site.data.social.updates_subtext | default: "Browse our latest project photos, before &amp; afters, and client updates." }}
+      </p>
+    </header>
 
-      <!-- Left: text -->
-      <div class="feed-text">
-        <p class="label">Find Us on Facebook</p>
-        <h2 class="heading">
-          {{ site.data.general.updates_heading | default: "Follow Us on Facebook" }}
-        </h2>
-        <p class="subtext">
-          {{ site.data.general.updates_subtext | default: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling." }}
+    <!-- Elfsight Facebook Feed Widget -->
+    {% if site.data.social.elfsight_widget_id and site.data.social.elfsight_widget_id != "" %}
+    <div class="feed-widget-wrap reveal reveal-delay-1">
+      <!-- Elfsight platform script — loads once per page -->
+      <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+      <!-- Widget — ID set via CMS → Site Settings → General → Elfsight Facebook Widget ID -->
+      <div class="elfsight-app-{{ site.data.social.elfsight_widget_id }}" data-elfsight-app-lazy></div>
+    </div>
+    {% else %}
+    <!-- Placeholder shown until Elfsight widget ID is added in the CMS -->
+    <div class="feed-widget-placeholder reveal reveal-delay-1">
+      <div class="feed-fb-icon" aria-hidden="true">
+        <svg width="26" height="26"><use href="#ic-fb"/></svg>
+      </div>
+      <div>
+        <p class="feed-placeholder-heading">Facebook Photo Feed</p>
+        <p class="feed-placeholder-body">
+          Add your Elfsight widget ID in the CMS to display your Facebook photo gallery here.<br />
+          CMS → Site Settings → General → Elfsight Facebook Widget ID
         </p>
-
-        <!-- Info strip — shown when no URL is set -->
-        {% unless site.data.general.facebook_url and site.data.general.facebook_url != "" %}
-        <div class="feed-info-strip">
-          <div class="feed-info-icon" aria-hidden="true">
-            <svg width="22" height="22"><use href="#ic-fb"/></svg>
-          </div>
-          <p class="feed-info-text">
-            Add your Facebook page URL via<br />
-            CMS → Site Settings → General → Facebook Page URL
-          </p>
-        </div>
-        {% endunless %}
       </div>
+    </div>
+    {% endif %}
 
-      <!-- Right: action buttons -->
-      {% if site.data.general.facebook_url and site.data.general.facebook_url != "" %}
-      <div class="feed-actions">
-        <!-- "See More Projects" — links to Facebook Photos tab -->
-        <a href="{{ site.data.general.facebook_url }}/photos"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn-primary">
-          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          {{ site.data.general.facebook_gallery_btn | default: "See More Projects" }}
-        </a>
-        <!-- "Follow Us on Facebook" — links to Facebook Page -->
-        <a href="{{ site.data.general.facebook_url }}"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn-ghost">
-          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          {{ site.data.general.facebook_follow_btn | default: "Follow Us on Facebook" }}
-        </a>
-      </div>
-      {% else %}
-      <!-- Placeholder buttons shown when no URL is configured -->
-      <div class="feed-actions">
-        <span class="btn btn-primary" style="opacity:.4;cursor:default;">
-          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          See More Projects
-        </span>
-        <span class="btn btn-ghost" style="opacity:.4;cursor:default;">
-          <svg width="15" height="15" aria-hidden="true"><use href="#ic-fb"/></svg>
-          Follow Us on Facebook
-        </span>
-      </div>
-      {% endif %}
-
-    </div><!-- /.feed-layout -->
+    <!-- Follow button — always shown -->
+    {% if site.data.social.facebook_url and site.data.social.facebook_url != "" %}
+    <div class="feed-follow-wrap reveal reveal-delay-2">
+      <a href="{{ site.data.social.facebook_url }}"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary feed-follow-btn">
+        <svg width="16" height="16" aria-hidden="true"><use href="#ic-fb"/></svg>
+        {{ site.data.social.facebook_follow_btn | default: "Follow Us on Facebook" }}
+      </a>
+    </div>
+    {% endif %}
 
   </div>
 </section>
 {% endif %}
 
 
+
+
+
+<!-- ============================================================
+     CONTACT — edit via CMS → Site Settings → Contact Info & Hours
+     Toggle visibility: CMS → Site Settings → Section Visibility
+     Formspree endpoint: CMS → Site Settings → General → Contact Form
+     ============================================================ -->
 <!-- ============================================================
      CONTACT — edit via CMS → Site Settings → Contact Info & Hours
      Toggle visibility: CMS → Site Settings → Section Visibility
@@ -868,31 +848,25 @@ layout: null
 
 
 <!-- ============================================================
-     LIGHTBOX — images & videos
+     LIGHTBOX
      ============================================================ -->
-<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <div class="lightbox-content">
 
-    <!-- Top bar: counter left, close right -->
     <div class="lightbox-topbar">
       <p class="lightbox-counter" id="lightboxCounter" aria-live="polite"></p>
       <p class="lightbox-type-badge" id="lightboxTypeBadge"></p>
-      <button class="lightbox-close" id="lightboxClose" aria-label="Close viewer">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">
         <svg width="16" height="16"><use href="#ic-x"/></svg>
       </button>
     </div>
 
-    <!-- Media area — shows either <img> or <video> -->
     <div class="lightbox-media" id="lightboxMedia">
-      <img  class="lightbox-img"   id="lightboxImg"   src="" alt="" />
-      <video class="lightbox-vid"  id="lightboxVid"   src="" controls playsinline
-             preload="metadata"></video>
+      <img class="lightbox-img" id="lightboxImg" src="" alt="" />
     </div>
 
-    <!-- Caption -->
     <p class="lightbox-caption" id="lightboxCaption"></p>
 
-    <!-- Prev / Next -->
     <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Previous">
       <svg width="20" height="20"><use href="#ic-chev-l"/></svg>
     </button>
