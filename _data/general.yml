@@ -19,7 +19,7 @@ cta_phone_label: "Call Us Now"
 
 # ── Social / Facebook ──
 # Your Facebook page URL — used for the Follow button
-facebook_url:         https://www.facebook.com/profile.php?id=100058249874394
+facebook_url:        ""
 facebook_follow_btn: "Follow Us on Facebook"
 
 # ── Elfsight Facebook Widget ──
@@ -29,16 +29,14 @@ facebook_follow_btn: "Follow Us on Facebook"
 #    e.g. from: <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
 #    paste just: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 # Leave empty to show the placeholder until your widget is ready
-elfsight_widget_id: https://8d61c91296db4809a4b33fa68cb15fdb.elf.site
+elfsight_widget_id: ""
 
 # ── Contact Form ──
 # Get your endpoint from https://formspree.io → New Form → copy the URL
 # Format: https://formspree.io/f/XXXXXXXX
 # Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: https://formspree.io/f/xbdpgknz
-facebook_url: https://www.facebook.com/profile.php?id=100058249874394
-facebook_gallery_btn: " "
-facebook_follow_btn: Follow Us on Facebook
-updates_heading: Find Us on Facebook
-elfsight_widget_id: ""
-updates_subtext: Browse our latest project photos, before & afters, and client updates.
+formspree_endpoint: ""
+
+# ── Updates / Social section ──
+updates_heading: "Find Us on Facebook"
+updates_subtext: "Browse our latest project photos, before & afters, and client updates."

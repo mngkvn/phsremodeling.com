@@ -35,7 +35,7 @@ backend:
   base_url: https://auth.decapbridge.com
   auth_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/pkce
   auth_token_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/token
-  gateway_url: https://gateway.decapbridge.com
+  gateway_url: https://gateway.decapbridge.com              # ← replace (numeric)
 
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
