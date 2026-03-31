@@ -1,0 +1,10 @@
+phone: 630-415-6766
+email: contractor@phsremodeling.com
+service_area: Serving the Midwest
+hours:
+  - day: Mon – Sat
+    time: 9:00 AM – 5:00 PM
+    open: true
+  - day: Sunday
+    time: Closed
+    open: false
