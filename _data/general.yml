@@ -29,7 +29,7 @@ facebook_follow_btn: "Follow Us on Facebook"
 #    e.g. from: <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
 #    paste just: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 # Leave empty to show the placeholder until your widget is ready
-elfsight_widget_id: ""
+elfsight_widget_id: https://8d61c91296db4809a4b33fa68cb15fdb.elf.site
 
 # ── Contact Form ──
 # Get your endpoint from https://formspree.io → New Form → copy the URL
