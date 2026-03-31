@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # ================================================================
 # _data/general.yml
 # Managed via Decap CMS → Site Settings → General / Business Info
@@ -39,6 +40,8 @@ facebook_gallery_btn: "See More Projects"
 facebook_follow_btn:  "Follow Us on Facebook"
 >>>>>>> parent of 44c2bc7 (Fixed Lightbox)
 =======
+=======
+>>>>>>> parent of d827440 (Changed lightbox to support videos)
 business_name: PH Remodeling
 tagline: phsremodeling.com
 meta_description: PHS Remodeling — licensed, bonded & insured home renovation
@@ -52,6 +55,9 @@ cta_subtext: From a single room to a full exterior overhaul — we handle every
   project with the same attention to detail and commitment to excellence.
 cta_phone_label: Call Us Now
 facebook_url: ""
+<<<<<<< HEAD
+>>>>>>> parent of d827440 (Changed lightbox to support videos)
+=======
 >>>>>>> parent of d827440 (Changed lightbox to support videos)
 
 # ── Contact Form ──
@@ -61,9 +67,15 @@ facebook_url: ""
 formspree_endpoint: ""
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # ── Updates / Social section ──
 updates_heading: "Follow Us on Facebook"
 updates_subtext: "See our latest project photos, videos, and updates. Follow our Facebook page to stay up to date with everything PHS Remodeling."
+=======
+# ── Updates section ──
+updates_heading: "Latest Updates"
+updates_subtext: "Follow along as we share our latest projects, tips, and news."
+>>>>>>> parent of d827440 (Changed lightbox to support videos)
 =======
 # ── Updates section ──
 updates_heading: "Latest Updates"
