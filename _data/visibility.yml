@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ================================================================
 # _data/visibility.yml
 # Managed via Decap CMS → Site Settings → Section Visibility
@@ -16,3 +17,12 @@ cta_banner:       true   # "Ready to Transform Your Home?" strip
 testimonials:     true   # Client reviews grid
 updates_feed:     true   # Facebook / social media embed
 contact:          true   # Contact form + phone/email + hours
+=======
+stats_bar: false
+why_choose_us: true
+featured_projects: true
+cta_banner: false
+testimonials: false
+updates_feed: false
+contact: true
+>>>>>>> parent of 86fab44 (Merge branch 'main' of https://github.com/mngkvn/phsremodeling.com)
