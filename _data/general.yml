@@ -1,51 +1,21 @@
-# ================================================================
-# _data/general.yml
-# Managed via Decap CMS → Site Settings → General / Business Info
-# ================================================================
-
-# ── Business identity ──
-business_name: "PHS Remodeling"
-tagline:       "phsremodeling.com"
-meta_description: "PHS Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
-
-# ── Nav Logo ──
-# logo_mode controls what appears in the top-left navigation:
-#   "text"       — show business name + tagline text only  (default)
-#   "image"      — show logo image only, no text
-#   "image+text" — show logo image AND business name side by side
-logo_mode:  "text"
-logo_image: ""          # path set automatically when uploaded via CMS
-logo_height: 48         # display height of logo image in pixels (20–80)
-
-# ── Footer ──
-footer_description: "Dedicated to delivering premier craftsmanship and exceptional customer service on every interior and exterior home renovation project."
-
-# ── CTA Banner ──
-cta_eyebrow:     "Free Consultation"
-cta_heading:     "Ready to Transform Your Home?"
-cta_subtext:     "From a single room to a full exterior overhaul — we handle every project with the same attention to detail and commitment to excellence."
-cta_phone_label: "Call Us Now"
-
-# ── Social / Facebook ──
-# Your Facebook page URL — used for the Follow button
-facebook_url:        ""
-facebook_follow_btn: "Follow Us on Facebook"
-
-# ── Elfsight Facebook Widget ──
-# 1. Go to elfsight.com → New App → Facebook Feed → choose Large layout
-# 2. Publish the widget
-# 3. From the embed snippet, copy only the App ID:
-#    e.g. from: <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
-#    paste just: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-# Leave empty to show the placeholder until your widget is ready
-elfsight_widget_id: ""
-
-# ── Contact Form ──
-# Get your endpoint from https://formspree.io → New Form → copy the URL
-# Format: https://formspree.io/f/XXXXXXXX
-# Leave empty to disable live submissions (form shows success UI for testing only)
+business_name: PHS Remodeling
+tagline: phsremodeling.com
+logo_mode: image+text
+logo_image: /assets/images/uploads/ícono.png
+logo_height: 48
+meta_description: PHS Remodeling — licensed, bonded & insured home renovation
+  experts. Kitchens, bathrooms, roofing, siding, and more.
+footer_description: Dedicated to delivering premier craftsmanship and
+  exceptional customer service on every interior and exterior home renovation
+  project.
+cta_eyebrow: Free Consultation
+cta_subtext: From a single room to a full exterior overhaul — we handle every
+  project with the same attention to detail and commitment to excellence.
+cta_phone_label: Call Us Now
 formspree_endpoint: ""
-
-# ── Updates / Social section ──
-updates_heading: "Find Us on Facebook"
-updates_subtext: "Browse our latest project photos, before & afters, and client updates."
+facebook_follow_btn: Follow Us on Facebook
+cta_heading: Ready to Transform Your Home?
+updates_heading: Find Us on Facebook
+elfsight_widget_id: ""
+facebook_url: ""
+updates_subtext: Browse our latest project photos, before & afters, and client updates.
