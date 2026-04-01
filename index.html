@@ -59,9 +59,38 @@ layout: null
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <!-- Logo — edit via CMS → Site Settings → General / Business Info -->
-    <a href="#home" class="nav-logo">
-      <span class="nav-logo-name">{{ site.data.general.business_name | default: "PHS Remodeling" }}</span>
-      <span class="nav-logo-tagline">{{ site.data.general.tagline | default: "phsremodeling.com" }}</span>
+    {% assign logo_mode  = site.data.general.logo_mode  | default: "text" %}
+    {% assign logo_image = site.data.general.logo_image | default: "" %}
+    {% assign logo_h     = site.data.general.logo_height | default: 48 %}
+
+    <a href="#home" class="nav-logo" aria-label="{{ site.data.general.business_name | default: 'PHS Remodeling' }} — home">
+
+      {% if logo_image != "" and logo_mode == "image" %}
+        <!-- Mode: image only — no text -->
+        <img src="{{ logo_image | relative_url }}"
+             alt="{{ site.data.general.business_name | default: 'PHS Remodeling' }} logo"
+             class="nav-logo-img"
+             style="height:{{ logo_h }}px;"
+             loading="eager" />
+
+      {% elsif logo_image != "" and logo_mode == "image+text" %}
+        <!-- Mode: image + text side by side -->
+        <img src="{{ logo_image | relative_url }}"
+             alt="{{ site.data.general.business_name | default: 'PHS Remodeling' }} logo"
+             class="nav-logo-img"
+             style="height:{{ logo_h }}px;"
+             loading="eager" />
+        <span class="nav-logo-text">
+          <span class="nav-logo-name">{{ site.data.general.business_name | default: "PHS Remodeling" }}</span>
+          <span class="nav-logo-tagline">{{ site.data.general.tagline | default: "phsremodeling.com" }}</span>
+        </span>
+
+      {% else %}
+        <!-- Mode: text only (default) -->
+        <span class="nav-logo-name">{{ site.data.general.business_name | default: "PHS Remodeling" }}</span>
+        <span class="nav-logo-tagline">{{ site.data.general.tagline | default: "phsremodeling.com" }}</span>
+      {% endif %}
+
     </a>
 
     <ul class="nav-links" role="list">
