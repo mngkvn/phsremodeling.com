@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ================================================================
 # _data/general.yml
 # Managed via Decap CMS → Site Settings → General / Business Info
@@ -38,6 +39,21 @@ facebook_follow_btn: "Follow Us on Facebook"
 #    e.g. from: <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
 #    paste just: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 # Leave empty to show the placeholder until your widget is ready
+=======
+meta_description: PHS Remodeling — licensed, bonded & insured home renovation
+  experts. Kitchens, bathrooms, roofing, siding, and more.
+formspree_endpoint: https://formspree.io/f/xbdpgknz
+facebook_follow_btn: Follow Us on Facebook
+business_name: PH Remodeling
+tagline: phsremodeling.com
+footer_description: Dedicated to delivering premier craftsmanship and
+  exceptional customer service on every interior and exterior home renovation
+  project.
+cta_eyebrow: Free Consultation
+cta_heading: Ready to Transform Your Home?
+cta_phone_label: Call Us Now
+updates_heading: Find Us on Facebook
+>>>>>>> parent of 1ae7278 (Update ⚙ Site Settings “general”)
 elfsight_widget_id: ""
 
 # ── Contact Form ──
