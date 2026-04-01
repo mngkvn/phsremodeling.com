@@ -35,7 +35,7 @@ backend:
   base_url: https://auth.decapbridge.com
   auth_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/pkce
   auth_token_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/token
-  gateway_url: https://gateway.decapbridge.com
+  gateway_url: https://gateway.decapbridge.com             
 
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
@@ -140,12 +140,45 @@ collections:
           - label: "Business Name"
             name:  "business_name"
             widget: "string"
-            hint:  "Shown in the nav logo, page title, and footer."
+            hint:  "Shown in the nav logo (when text mode is on), page title, and footer."
 
           - label: "Tagline / Domain"
             name:  "tagline"
             widget: "string"
             hint:  "Short line shown under the business name. e.g. phsremodeling.com"
+
+          # ── Logo controls ────────────────────────────────────
+          - label: "Nav Logo — Display Mode"
+            name:  "logo_mode"
+            widget: "select"
+            default: "text"
+            options:
+              - label: "Text only (business name + tagline)"
+                value: "text"
+              - label: "Logo image only (hides text)"
+                value: "image"
+              - label: "Logo image + business name side by side"
+                value: "image+text"
+            hint:  "Controls what appears in the top-left corner of the navigation bar."
+
+          - label: "Nav Logo — Image"
+            name:  "logo_image"
+            widget: "image"
+            required: false
+            hint: >
+              Upload your logo file here (PNG with transparent background recommended).
+              Supported: PNG, JPG, SVG, WebP.
+              The image is only shown when Logo Display Mode is set to
+              "Logo image only" or "Logo image + business name".
+
+          - label: "Nav Logo — Image Height (pixels)"
+            name:  "logo_height"
+            widget: "number"
+            default: 48
+            value_type: int
+            min: 20
+            max: 80
+            hint:  "How tall the logo image appears in the nav bar. 40–56 px looks best on most screens."
 
           - label: "Meta Description (SEO)"
             name:  "meta_description"
