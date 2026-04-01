@@ -8,6 +8,15 @@ business_name: "PHS Remodeling"
 tagline:       "phsremodeling.com"
 meta_description: "PHS Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
 
+# ── Nav Logo ──
+# logo_mode controls what appears in the top-left navigation:
+#   "text"       — show business name + tagline text only  (default)
+#   "image"      — show logo image only, no text
+#   "image+text" — show logo image AND business name side by side
+logo_mode:  "text"
+logo_image: ""          # path set automatically when uploaded via CMS
+logo_height: 48         # display height of logo image in pixels (20–80)
+
 # ── Footer ──
 footer_description: "Dedicated to delivering premier craftsmanship and exceptional customer service on every interior and exterior home renovation project."
 
