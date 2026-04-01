@@ -27,7 +27,6 @@
 # 5. Push to GitHub and visit phsremodeling.com/admin/
 # ─────────────────────────────────────────────────────────────────
 
-# Use DecapBridge PKCE auth (required)
 backend:
   name: git-gateway
   repo: mngkvn/phsremodeling.com
@@ -37,6 +36,9 @@ backend:
   auth_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/pkce
   auth_token_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/token
   gateway_url: https://gateway.decapbridge.com
+media_folder:  "assets/images/uploads"
+public_folder: "/assets/images/uploads"          # ← replace (numeric)
+
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
@@ -122,31 +124,6 @@ collections:
           name:   "image"
           widget: "image"
 
-      - label: "Project Videos"
-        name:  "videos"
-        widget: "list"
-        label_singular: "Video"
-        max:   4
-        required: false
-        hint: >
-          Add short MP4 videos for this project. They appear after photos
-          in the gallery with a play button. Clicking opens a full-screen video player.
-          Keep clips short (30–90 sec) and under 50 MB.
-        fields:
-          - label:    "Video File (MP4)"
-            name:     "src"
-            widget:   "image"
-            hint:     "Upload your .mp4 video file here. Use the file picker to select an MP4."
-          - label:    "Thumbnail / Preview Image"
-            name:     "thumb"
-            widget:   "image"
-            required: false
-            hint:     "Still image shown in the grid before the video plays. If left empty, a play icon is shown on a dark background."
-          - label:    "Caption"
-            name:     "caption"
-            widget:   "string"
-            required: false
-            hint:     "Short label shown beneath the video in the viewer — e.g. Kitchen before & after walkthrough"
   # (files collection — each entry maps to exactly ONE _data file)
   # ==============================================================
   - name:  "settings"
@@ -212,28 +189,10 @@ collections:
               Format: https://formspree.io/f/XXXXXXXX
               Leave empty to keep the form in demo mode (no emails sent).
 
-          - label: "Facebook Page URL"
-            name:  "facebook_url"
-            widget: "string"
-            required: false
-            hint:  "Full URL to your Facebook page. e.g. https://www.facebook.com/PHSRemodeling"
-
-          - label: "Facebook — Gallery Button Label"
-            name:  "facebook_gallery_btn"
-            widget: "string"
-            default: "See More Projects"
-            hint:  "Label on the button that links to your Facebook photos album."
-
-          - label: "Facebook — Follow Button Label"
-            name:  "facebook_follow_btn"
-            widget: "string"
-            default: "Follow Us on Facebook"
-            hint:  "Label on the button that links to your Facebook page."
-
           - label: "Updates Section — Heading"
             name:  "updates_heading"
             widget: "string"
-            hint:  "Heading shown above the Facebook feed embed."
+            hint:  "Heading shown above the Facebook feed section."
 
           - label: "Updates Section — Subtext"
             name:  "updates_subtext"
@@ -242,7 +201,56 @@ collections:
 
 
       # ──────────────────────────────────────────────────────────
-      # 2 of 8 — Section Visibility
+      # 1 of 9 — Facebook & Social  ← PASTE YOUR ELFSIGHT ID HERE
+      #   File: _data/social.yml   (unique)
+      # ──────────────────────────────────────────────────────────
+      - label: "📘 Facebook & Social"
+        name:  "social"
+        file:  "_data/social.yml"
+        fields:
+
+          - label: "Facebook Page URL"
+            name:  "facebook_url"
+            widget: "string"
+            required: false
+            hint:  "Your full Facebook page URL — e.g. https://www.facebook.com/PHSRemodeling"
+
+          - label: "Follow Button Label"
+            name:  "facebook_follow_btn"
+            widget: "string"
+            default: "Follow Us on Facebook"
+            hint:  "Text on the button visitors click to follow your page."
+
+          - label: "🔑 Elfsight Widget ID"
+            name:  "elfsight_widget_id"
+            widget: "string"
+            required: false
+            hint: >
+              HOW TO GET YOUR ID:
+              1. Go to elfsight.com and log in
+              2. Click "Create App" → choose "Facebook Feed"
+              3. Select the Large layout, connect your Facebook page, click Publish
+              4. Copy the embed code — it looks like:
+                 <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
+              5. Paste ONLY the ID part here (the text between "elfsight-app-" and the closing quote):
+                 XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+              Leave empty to show a placeholder until your ID is ready.
+
+          - label: "Section Heading"
+            name:  "updates_heading"
+            widget: "string"
+            default: "Find Us on Facebook"
+            hint:  "Heading shown above the Facebook widget."
+
+          - label: "Section Subtext"
+            name:  "updates_subtext"
+            widget: "string"
+            default: "Browse our latest project photos, before & afters, and client updates."
+            hint:  "Short description shown below the heading."
+
+
+      # ──────────────────────────────────────────────────────────
+      # 2 of 9 — Section Visibility
       #   File: _data/visibility.yml   (unique)
       #
       #   Toggle any section on or off without touching code.
