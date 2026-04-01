@@ -4,9 +4,9 @@
 # ================================================================
 
 # ── Business identity ──
-business_name: "PHS Remodeling"
-tagline:       "phsremodeling.com"
-meta_description: "PHS Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
+business_name: "PH Remodeling"
+tagline:       "LICENSED|INSURED|ACCREDITED|BONDED"
+meta_description: "PH Remodeling — licensed, bonded & insured home renovation experts. Kitchens, bathrooms, roofing, siding, and more."
 
 # ── Nav Logo ──
 # logo_mode controls what appears in the top-left navigation:
@@ -38,14 +38,9 @@ facebook_follow_btn: "Follow Us on Facebook"
 #    e.g. from: <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
 #    paste just: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 # Leave empty to show the placeholder until your widget is ready
-elfsight_widget_id: ""
-
-# ── Contact Form ──
-# Get your endpoint from https://formspree.io → New Form → copy the URL
-# Format: https://formspree.io/f/XXXXXXXX
-# Leave empty to disable live submissions (form shows success UI for testing only)
-formspree_endpoint: ""
-
-# ── Updates / Social section ──
-updates_heading: "Find Us on Facebook"
-updates_subtext: "Browse our latest project photos, before & afters, and client updates."
+formspree_endpoint: https://formspree.io/f/xbdpgknz
+elfsight_widget_id: 8d61c912-96db-4809-a4b3-3fa68cb15fdb
+facebook_url: https://www.facebook.com/profile.php?id=100058249874394
+cta_subtext: From a single room to a full exterior overhaul — we handle every
+  project with the same attention to detail and commitment to excellence.
+updates_subtext: Browse our latest project photos, before & afters, and client updates.
