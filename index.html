@@ -66,7 +66,7 @@ layout: null
     <a href="#home" class="nav-logo" aria-label="{{ site.data.general.business_name | default: 'PHS Remodeling' }} — home">
 
       {% if logo_image != "" and logo_mode == "image" %}
-        <!-- Mode: image only — no text -->
+        <!-- Mode: image only — logo replaces all text -->
         <img src="{{ logo_image | relative_url }}"
              alt="{{ site.data.general.business_name | default: 'PHS Remodeling' }} logo"
              class="nav-logo-img"
@@ -74,7 +74,7 @@ layout: null
              loading="eager" />
 
       {% elsif logo_image != "" and logo_mode == "image+text" %}
-        <!-- Mode: image + text side by side -->
+        <!-- Mode: image LEFT, name + tagline stacked RIGHT -->
         <img src="{{ logo_image | relative_url }}"
              alt="{{ site.data.general.business_name | default: 'PHS Remodeling' }} logo"
              class="nav-logo-img"
@@ -86,9 +86,11 @@ layout: null
         </span>
 
       {% else %}
-        <!-- Mode: text only (default) -->
-        <span class="nav-logo-name">{{ site.data.general.business_name | default: "PHS Remodeling" }}</span>
-        <span class="nav-logo-tagline">{{ site.data.general.tagline | default: "phsremodeling.com" }}</span>
+        <!-- Mode: text only — name stacked above tagline -->
+        <span class="nav-logo-text">
+          <span class="nav-logo-name">{{ site.data.general.business_name | default: "PHS Remodeling" }}</span>
+          <span class="nav-logo-tagline">{{ site.data.general.tagline | default: "phsremodeling.com" }}</span>
+        </span>
       {% endif %}
 
     </a>

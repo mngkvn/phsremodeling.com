@@ -171,4 +171,23 @@
   const yearEl = document.getElementById('currentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ── Auto-fix image paths with non-ASCII characters ──
+     GitHub Pages can't serve files whose URLs contain accented or
+     special characters (e.g. ícono.png → %C3%ADcono.png).
+     This encodes only the filename part of any broken <img> src. ── */
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function onImgError() {
+      img.removeEventListener('error', onImgError);
+      try {
+        const url   = new URL(img.src, window.location.href);
+        const parts = url.pathname.split('/');
+        const fixed = parts.slice(0, -1).join('/') + '/' +
+                      encodeURIComponent(decodeURIComponent(parts[parts.length - 1]));
+        if (fixed !== url.pathname) {
+          img.src = fixed + url.search + url.hash;
+        }
+      } catch (_) {}
+    });
+  });
+
 })();

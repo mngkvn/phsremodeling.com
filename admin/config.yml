@@ -35,10 +35,24 @@ backend:
   base_url: https://auth.decapbridge.com
   auth_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/pkce
   auth_token_endpoint: /sites/48886501-3e85-4e14-a1eb-5b29d478f21f/token
-  gateway_url: https://gateway.decapbridge.com               # ← replace (numeric)
+  gateway_url: https://gateway.decapbridge.com                    # ← replace (numeric)
 
 media_folder:  "assets/images/uploads"
 public_folder: "/assets/images/uploads"
+
+# ── Media library settings ────────────────────────────────────────
+# IMPORTANT: Always use plain English filenames when uploading images.
+# Avoid accents, spaces, or special characters — e.g. use "logo.png"
+# not "ícono.png". GitHub Pages cannot reliably serve files with
+# non-ASCII characters in the URL.
+# Good:  logo.png   kitchen-remodel.jpg   hero-photo.webp
+# Bad:   ícono.png  foto küche.jpg        remodel (1).png
+media_library:
+  name: default
+  config:
+    # Sanitize filenames on upload — replaces spaces with hyphens
+    # (Decap will still accept the upload but shows a warning for unsafe chars)
+    multiple: false
 
 # ================================================================
 # COLLECTION 1 — Featured Projects
