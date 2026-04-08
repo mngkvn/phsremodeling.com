@@ -1,7 +1,7 @@
-stats_bar: false
+stats_bar: true
 why_choose_us: true
 featured_projects: true
-cta_banner: false
-testimonials: false
+cta_banner: true
+testimonials: true
 updates_feed: true
 contact: true
