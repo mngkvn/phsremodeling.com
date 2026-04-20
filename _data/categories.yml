@@ -9,6 +9,10 @@ items:
   - name: Exterior
     title: Exterior Renovations
     description: Siding, roofing, windows, doors, and full curb-appeal transformations.
+  - name: Flooring
+    title: Flooring Renovation
+    description: Hardwood, vinyl, tile, and durable epoxy flooring solutions for
+      residential and commercial spaces.
   - name: Kitchen
     title: Kitchen Renovations
     description: Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.
