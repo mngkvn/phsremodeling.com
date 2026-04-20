@@ -1,9 +1,9 @@
-business_name: PHS Remodeling
+business_name: PH Remodeling
 tagline: LICENSED|BONDED|ACCREDITED|INSURED
-logo_mode: text
-logo_image: assets/images/uploads/ícono-2.png
-logo_height: 40
-meta_description: PHS Remodeling — licensed, bonded & insured home renovation
+logo_mode: image+text
+logo_image: /assets/images/uploads/submarca-2.png
+logo_height: 60
+meta_description: PH Remodeling — licensed, bonded & insured home renovation
   experts. Kitchens, bathrooms, roofing, siding, and more.
 footer_description: Dedicated to delivering premier craftsmanship and
   exceptional customer service on every interior and exterior home renovation
@@ -12,7 +12,7 @@ cta_eyebrow: Free Consultation
 cta_subtext: From a single room to a full exterior overhaul — we handle every
   project with the same attention to detail and commitment to excellence.
 cta_phone_label: Call Us Now
-formspree_endpoint: ""
+formspree_endpoint: https://formspree.io/f/xbdpgknz
 facebook_follow_btn: Follow Us on Facebook
 cta_heading: Ready to Transform Your Home?
 updates_heading: Find Us on Facebook
