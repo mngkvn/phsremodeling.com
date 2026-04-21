@@ -1,34 +1,33 @@
-items:
-  - name: Basement
-    title: Basement Finishing
-    description: Full basement transformations — entertainment rooms, home offices,
+- name: Basement
+  title: Basement Finishing
+  description: Full basement transformations — entertainment rooms, home offices,
       and more.
-  - name: Bathroom
-    title: Bathroom Remodels
-    description: Walk-in showers, heated floors, custom vanities, and full tile work.
-  - name: Exterior
-    title: Exterior Renovations
-    description: Siding, roofing, windows, doors, and full curb-appeal transformations.
-  - name: Flooring
-    title: Flooring Renovation
-    description: Hardwood, vinyl, tile, and durable epoxy flooring solutions for
-      residential and commercial spaces.
-  - name: Kitchen
-    title: Kitchen Renovations
-    description: Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.
-  - description: Custom-built storage, bench seating, cubbies, and durable flooring
+- name: Bathroom
+  title: Bathroom Remodels
+  description: Walk-in showers, heated floors, custom vanities, and full tile work.
+- name: Exterior
+  title: Exterior Renovations
+  description: Siding, roofing, windows, doors, and full curb-appeal transformations.
+- name: Flooring
+  title: Flooring Renovation
+  description: Hardwood, vinyl, tile, and durable epoxy flooring solutions for
+    residential and commercial spaces.
+- name: Kitchen
+  title: Kitchen Renovations
+  description: Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.
+- description: Custom-built storage, bench seating, cubbies, and durable flooring
       designed to keep your home organized and clutter-free
-    name: Mud Room
-    title: Mud Room Finishing
-  - name: Roofing
-    title: Roofing
-    description: Architectural shingles, flat roofs, repairs, and full replacements.
-  - name: Siding
-    title: Siding
-    description: Fiber cement, vinyl, and wood siding installation and replacement.
-  - name: Windows & Doors
-    title: Windows & Doors
-    description: Energy-efficient window replacements and custom door installations.
-  - name: Other
-    title: Other Projects
-    description: Additional renovation and remodeling services tailored to your needs.
+  name: Mud Room
+  title: Mud Room Finishing
+- name: Roofing
+  title: Roofing
+  description: Architectural shingles, flat roofs, repairs, and full replacements.
+- name: Siding
+  title: Siding
+  description: Fiber cement, vinyl, and wood siding installation and replacement.
+- name: Windows & Doors
+  title: Windows & Doors
+  description: Energy-efficient window replacements and custom door installations.
+- name: Other
+  title: Other Projects
+  description: Additional renovation and remodeling services tailored to your needs.
