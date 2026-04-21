@@ -91,19 +91,19 @@ collections:
         widget:  "select"
         hint:    "Projects sharing a category are grouped in the same carousel."
         options:
-          - Kitchen
-          - Bathroom
-          - Basement
-          - Exterior
-          - Roofing
-          - Siding
-          - "Windows & Doors"
-          - Painting
-          - Drywall
-          - Electrical
-          - Plumbing
-          - Handyman
-          - Other
+          - { label: "Kitchen",        value: "Kitchen" }
+          - { label: "Bathroom",       value: "Bathroom" }
+          - { label: "Basement",       value: "Basement" }
+          - { label: "Exterior",       value: "Exterior" }
+          - { label: "Roofing",        value: "Roofing" }
+          - { label: "Siding",         value: "Siding" }
+          - { label: "Windows & Doors", value: "Windows & Doors" }
+          - { label: "Painting",       value: "Painting" }
+          - { label: "Drywall",        value: "Drywall" }
+          - { label: "Electrical",     value: "Electrical" }
+          - { label: "Plumbing",       value: "Plumbing" }
+          - { label: "Handyman",       value: "Handyman" }
+          - { label: "Other",          value: "Other" }
 
       - label:      "Display Order (within category)"
         name:       "category_order"
