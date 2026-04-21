@@ -2,7 +2,7 @@
 title: Mud Room
 description: Your entryway sets the tone for your entire home—and this mud room
   transformation does exactly that.
-category: Other
+category: Mud Room
 category_order: 1
 featured: true
 images:
