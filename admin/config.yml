@@ -93,7 +93,7 @@ collections:
         file: "categories"
         search_fields: ["items.*.name", "items.*.title"]
         value_field: "items.*.name"
-        display_fields: ["items.*.title"]
+        display_fields: ["items.*.name"]
         hint: "Projects sharing a category are grouped in the same carousel."
 
       - label:      "Display Order (within category)"
