@@ -91,9 +91,9 @@ collections:
         widget: "relation"
         collection: "settings"
         file: "categories"
-        search_fields: ["name", "title"]
-        value_field: "name"
-        display_fields: ["title"]
+        search_fields: ["items.*.name", "items.*.title"]
+        value_field: "items.*.name"
+        display_fields: ["items.*.title"]
         hint: "Projects sharing a category are grouped in the same carousel."
 
       - label:      "Display Order (within category)"
