@@ -16,6 +16,10 @@ items:
   - name: Kitchen
     title: Kitchen Renovations
     description: Custom cabinetry, countertops, fixtures, and full gut-to-studs rebuilds.
+  - description: Custom-built storage, bench seating, cubbies, and durable flooring
+      designed to keep your home organized and clutter-free
+    name: Mud Room
+    title: Mud Room Finishing
   - name: Roofing
     title: Roofing
     description: Architectural shingles, flat roofs, repairs, and full replacements.
@@ -28,7 +32,3 @@ items:
   - name: Other
     title: Other Projects
     description: Additional renovation and remodeling services tailored to your needs.
-  - description: Custom-built storage, bench seating, cubbies, and durable flooring
-      designed to keep your home organized and clutter-free
-    name: Mud Room
-    title: Mud Room Finishing
