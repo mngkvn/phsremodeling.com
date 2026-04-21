@@ -86,24 +86,15 @@ collections:
         widget: "text"
         hint:  "2–3 sentences shown under the project title on the page."
 
-      - label:   "Category"
-        name:    "category"
-        widget:  "select"
-        hint:    "Projects sharing a category are grouped in the same carousel."
-        options:
-          - { label: "Kitchen",        value: "Kitchen" }
-          - { label: "Bathroom",       value: "Bathroom" }
-          - { label: "Basement",       value: "Basement" }
-          - { label: "Exterior",       value: "Exterior" }
-          - { label: "Roofing",        value: "Roofing" }
-          - { label: "Siding",         value: "Siding" }
-          - { label: "Windows & Doors", value: "Windows & Doors" }
-          - { label: "Painting",       value: "Painting" }
-          - { label: "Drywall",        value: "Drywall" }
-          - { label: "Electrical",     value: "Electrical" }
-          - { label: "Plumbing",       value: "Plumbing" }
-          - { label: "Handyman",       value: "Handyman" }
-          - { label: "Other",          value: "Other" }
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "settings"
+        file: "categories"
+        search_fields: ["items.name", "items.title"]
+        value_field: "items.name"
+        display_fields: ["items.title"]
+        hint: "Projects sharing a category are grouped in the same carousel."
 
       - label:      "Display Order (within category)"
         name:       "category_order"
