@@ -1,7 +1,8 @@
 /* ================================================================
    PHS Remodeling — lightbox.js
-   Image-only lightbox for project gallery photos.
-   Click any .fc-media with a real data-src to open.
+   Image + video lightbox for project gallery photos and video
+   highlights. Click any .fc-media / .video-card with a real
+   data-src to open. Video items use data-type="video".
    Keyboard: Escape = close,  ← → = navigate.
    Touch: swipe left/right.
    ================================================================ */
@@ -13,6 +14,7 @@
   if (!overlay) return;
 
   const imgEl    = document.getElementById('lightboxImg');
+  const vidEl    = document.getElementById('lightboxVid');
   const caption  = document.getElementById('lightboxCaption');
   const counter  = document.getElementById('lightboxCounter');
   const typeBadge= document.getElementById('lightboxTypeBadge');
@@ -42,25 +44,48 @@
   function close() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-    setTimeout(() => { if (imgEl) imgEl.src = ''; }, 320);
+    setTimeout(() => {
+      if (imgEl) imgEl.src = '';
+      if (vidEl) { vidEl.pause(); vidEl.removeAttribute('src'); vidEl.load(); }
+    }, 320);
   }
 
   /* ── Render ── */
   function render() {
-    const el  = gallery[current];
-    const src = el.dataset.src || '';
-    const cap = el.dataset.caption || '';
+    const el   = gallery[current];
+    const src  = el.dataset.src || '';
+    const cap  = el.dataset.caption || '';
+    const type = el.dataset.type === 'video' ? 'video' : 'image';
 
     if (counter)    counter.textContent    = gallery.length > 1 ? `${current + 1} / ${gallery.length}` : '';
-    if (typeBadge)  typeBadge.textContent  = '';
+    if (typeBadge)  typeBadge.textContent  = type === 'video' ? 'Video' : '';
     if (caption)    caption.textContent    = cap;
     if (btnPrev)    btnPrev.disabled       = current === 0;
     if (btnNext)    btnNext.disabled       = current === gallery.length - 1;
 
-    if (imgEl) {
-      imgEl.style.display = 'block';
-      imgEl.src = src;
-      imgEl.alt = cap;
+    if (type === 'video') {
+      if (vidEl) {
+        vidEl.style.display = 'block';
+        vidEl.src = src;
+        vidEl.load();
+      }
+      if (imgEl) {
+        imgEl.style.display = 'none';
+        imgEl.src = '';
+        imgEl.alt = '';
+      }
+    } else {
+      if (vidEl) {
+        vidEl.pause();
+        vidEl.style.display = 'none';
+        vidEl.removeAttribute('src');
+        vidEl.load();
+      }
+      if (imgEl) {
+        imgEl.style.display = 'block';
+        imgEl.src = src;
+        imgEl.alt = cap;
+      }
     }
   }
 
@@ -71,6 +96,21 @@
   /* ── Bind to every project gallery ── */
   document.querySelectorAll('.fc-gallery').forEach(galleryEl => {
     const items = Array.from(galleryEl.querySelectorAll('.fc-media'));
+    items.forEach((item, i) => {
+      const hasSrc = item.dataset.src && item.dataset.src.trim() !== '';
+      item.style.cursor = hasSrc ? 'zoom-in' : 'default';
+      if (!hasSrc) return;
+
+      item.addEventListener('click', () => open(items, i));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(items, i); }
+      });
+    });
+  });
+
+  /* ── Bind to the video highlights gallery ── */
+  document.querySelectorAll('.video-grid').forEach(galleryEl => {
+    const items = Array.from(galleryEl.querySelectorAll('.video-card'));
     items.forEach((item, i) => {
       const hasSrc = item.dataset.src && item.dataset.src.trim() !== '';
       item.style.cursor = hasSrc ? 'zoom-in' : 'default';

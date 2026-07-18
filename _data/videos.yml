@@ -1,0 +1,10 @@
+# ================================================================
+# _data/videos.yml
+# Managed via Decap CMS → Site Settings → Video Highlights
+#
+# Short highlight / walkthrough videos shown in their own section.
+# Add a thumbnail image for best results — otherwise a placeholder
+# icon is shown until one is added.
+# ================================================================
+
+items: []

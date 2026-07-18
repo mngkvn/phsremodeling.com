@@ -141,6 +141,29 @@ bundle exec jekyll serve --livereload
 # → Open http://localhost:4000
 ```
 
+**Ruby 3.2+ / 4.x note:** this project is intentionally pinned to the
+`github-pages` gem (old Jekyll 3.9 / Liquid 4.0.3) so local builds match
+what GitHub Pages actually runs. That old Liquid version calls Ruby's
+`String#tainted?`, which modern Ruby removed entirely. If you're on
+Ruby ≥3.2 and see `undefined method 'tainted?'`, run any `jekyll`/`bundle
+exec jekyll` command with a small compatibility shim loaded first:
+
+```bash
+cat > /tmp/ruby4_compat.rb <<'EOF'
+unless Object.method_defined?(:tainted?)
+  class Object
+    def tainted?; false; end
+    def untaint; self; end
+    def taint; self; end
+  end
+end
+EOF
+RUBYOPT="-r/tmp/ruby4_compat.rb" bundle exec jekyll serve --livereload
+```
+
+This only affects the local Ruby process — it isn't part of the deployed
+site and has no effect on the GitHub Pages build.
+
 ---
 
 ## 📬 Contact Form

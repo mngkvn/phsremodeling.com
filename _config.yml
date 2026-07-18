@@ -10,6 +10,12 @@ title:   "PHS Remodeling"
 url:     "https://phsremodeling.com"   # live domain, no trailing slash
 baseurl: ""                             # "" for custom domain; "/repo" for GH Pages subdomain
 
+# Without this, the github-pages gem silently defaults to `theme:
+# jekyll-theme-primer`, whose own assets/css/style.css output collides
+# with — and overwrites — our real stylesheet at the same path. Explicit
+# `theme: null` is the gem's documented way to disable that default.
+theme: null
+
 # Collections
 collections:
   projects:

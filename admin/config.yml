@@ -315,6 +315,12 @@ collections:
             default: true
             hint:    "Category carousels showing your portfolio photos."
 
+          - label:   "Video Highlights"
+            name:    "video_highlights"
+            widget:  "boolean"
+            default: true
+            hint:    "Short video walkthrough clips, shown after Featured Projects."
+
           - label:   "CTA Banner"
             name:    "cta_banner"
             widget:  "boolean"
@@ -332,6 +338,12 @@ collections:
             widget:  "boolean"
             default: true
             hint:    "Social media embed section. Hide this until your Elfsight code is ready."
+
+          - label:   "Our Team"
+            name:    "team"
+            widget:  "boolean"
+            default: true
+            hint:    "Staff photos, names, and bios, shown before Contact."
 
           - label:   "Contact Section"
             name:    "contact"
@@ -586,3 +598,77 @@ collections:
                 min:    1
                 max:    5
                 value_type: int
+
+
+      # ──────────────────────────────────────────────────────────
+      # 10 of 11 — Video Highlights
+      #   File: _data/videos.yml   (unique)
+      # ──────────────────────────────────────────────────────────
+      - label: "🎬 Video Highlights"
+        name:  "videos"
+        file:  "_data/videos.yml"
+        fields:
+          - label: "Videos"
+            name:  "items"
+            widget: "list"
+            label_singular: "Video"
+            hint:  "Short highlight / walkthrough clips shown in their own section, between Featured Projects and the CTA banner."
+            fields:
+              - label: "Title"
+                name:  "title"
+                widget: "string"
+                hint:  "e.g. Full Kitchen Remodel — Before & After Walkthrough"
+              - label: "Description"
+                name:  "description"
+                widget: "text"
+                required: false
+                hint:  "1–2 sentences shown under the title on the video card."
+              - label: "Video File"
+                name:  "video"
+                widget: "file"
+                hint: >
+                  Upload an MP4 file (H.264, under ~25 MB recommended for fast loading).
+                  Plays inline in the lightbox when a visitor clicks the card.
+              - label: "Thumbnail Image"
+                name:  "thumbnail"
+                widget: "image"
+                required: false
+                hint: >
+                  Still image shown on the card before playback, 1200×750 px recommended.
+                  Leave empty to show a placeholder icon until one is added.
+
+
+      # ──────────────────────────────────────────────────────────
+      # 11 of 11 — Our Team
+      #   File: _data/team.yml   (unique)
+      # ──────────────────────────────────────────────────────────
+      - label: "👥 Our Team"
+        name:  "team"
+        file:  "_data/team.yml"
+        fields:
+          - label: "Team Members"
+            name:  "items"
+            widget: "list"
+            label_singular: "Team Member"
+            hint:  "Shown in the Our Team section, just before Contact."
+            fields:
+              - label: "Photo"
+                name:  "photo"
+                widget: "image"
+                required: false
+                hint: >
+                  Square headshot recommended, 400×400 px or larger.
+                  Leave empty to show a placeholder icon until one is added.
+              - label: "Name"
+                name:  "name"
+                widget: "string"
+                hint:  "e.g. Mike Peterson"
+              - label: "Title / Role"
+                name:  "title"
+                widget: "string"
+                hint:  "e.g. Founder & General Contractor"
+              - label: "Bio"
+                name:  "bio"
+                widget: "text"
+                required: false
+                hint:  "1–3 sentences of background/experience shown on the card."

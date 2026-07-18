@@ -1,7 +1,9 @@
 stats_bar: false
 why_choose_us: true
 featured_projects: true
+video_highlights: true
 cta_banner: false
 testimonials: false
 updates_feed: true
+team: true
 contact: true
