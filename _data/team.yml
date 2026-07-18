@@ -1,6 +1,5 @@
-# ================================================================
-# _data/team.yml
-# Managed via Decap CMS → Site Settings → Our Team
-# ================================================================
-
-items: []
+items:
+  - photo: /assets/images/uploads/ícono-2.png
+    name: Test Profile
+    title: Marketer
+    bio: Lipsum test on the website.
